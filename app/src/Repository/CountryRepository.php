@@ -2,30 +2,30 @@
 
 namespace App\Repository;
 
-use App\Entity\Destination;
+use App\Entity\Country;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * Class DestinationRepository
+ * Class CountryRepository
  *
- * @method Destination|null find($id, $lockMode = null, $lockVersion = null)
- * @method Destination|null findOneBy(array $criteria, array $orderBy = null)
- * @method Destination[]    findAll()
- * @method Destination[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Country|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Country|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Country[]    findAll()
+ * @method Country[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class DestinationRepository extends ServiceEntityRepository
+class CountryRepository extends ServiceEntityRepository
 {
 
     /**
-     * DestinationRepository constructor.
+     * CountryRepository constructor.
      *
      * @param \Symfony\Bridge\Doctrine\RegistryInterface $registry Registry
      */
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Destination::class);
+        parent::__construct($registry, Country::class);
     }
 
 
@@ -43,29 +43,29 @@ class DestinationRepository extends ServiceEntityRepository
     /**
      * Save record.
      *
-     * @param \App\Entity\Destination $destination Destination entity
+     * @param \App\Entity\Country $country Country entity
      *
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function save(Destination $destination): void
+    public function save(Country $country): void
     {
-        $this->_em->persist($destination);
-        $this->_em->flush($destination);
+        $this->_em->persist($country);
+        $this->_em->flush($country);
     }
 
     /**
      * Delete record.
      *
-     * @param \App\Entity\Destination $destination Destination entity
+     * @param \App\Entity\Country $country Country entity
      *
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function delete(Destination $destination): void
+    public function delete(Country $country): void
     {
-        $this->_em->remove($destination);
-        $this->_em->flush($destination);
+        $this->_em->remove($country);
+        $this->_em->flush($country);
     }
 
     /**
@@ -81,7 +81,7 @@ class DestinationRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Destination[] Returns an array of Destination objects
+    //  * @return Country[] Returns an array of Country objects
     //  */
     /*
     public function findByExampleField($value)
@@ -98,7 +98,7 @@ class DestinationRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Destination
+    public function findOneBySomeField($value): ?Country
     {
         return $this->createQueryBuilder('d')
             ->andWhere('d.exampleField = :val')

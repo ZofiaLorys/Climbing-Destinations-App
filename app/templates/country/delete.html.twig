@@ -1,0 +1,9 @@
+{% include 'default/_form.html.twig' with {
+    page_title: 'title.country_delete',
+    page_title_param: {'%id%': country.id},
+    attr: {
+        method: 'DELETE',
+        action: url('country_delete', {'id': country.id}),
+    },
+    back_to_list_path: 'country_index',
+} %}

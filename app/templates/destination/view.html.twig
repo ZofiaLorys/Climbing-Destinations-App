@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.destination_view'|trans({'%id%': destination.id|default('')}) }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.destination_view'|trans({'%id%': destination.id|default('')}) }}</h1>
+    {% if destination is defined and destination|length %}
+        <dl class="dl-horizontal">
+            <dt>{{ 'label.id'|trans }}</dt>
+            <dd>{{ destination.id }}</dd>
+            <dt>{{ 'label.title'|trans }}</dt>
+            <dd>{{  destination.title }}</dd>
+            <dt>{{ 'label.description'|trans }}</dt>
+            <dd>{{ destination.description }}</dd>
+            <dt>{{ 'label.country'|trans }}</dt>
+            <dd>{{  destination.country.title }}</dd>
+
+        </dl>
+    {% else %}
+        <p>
+            {{ 'message.item_not_found'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}

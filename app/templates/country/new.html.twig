@@ -1,0 +1,8 @@
+{% include 'default/_form.html.twig' with {
+    page_title: 'title.country_new',
+    attr: {
+        method: 'POST',
+        action: url('country_new')
+    },
+    back_to_list_path: 'country_index',
+} %}
