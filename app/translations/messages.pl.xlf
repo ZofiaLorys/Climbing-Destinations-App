@@ -30,14 +30,44 @@
                 <source>action.delete</source>
                 <target>Usuń</target>
             </trans-unit>
-            <trans-unit id="destination_list">
-                <source>destination_list</source>
+            <trans-unit id="title.destination_list">
+                <source>title.destination_list</source>
                 <target>Lista miejscówek</target>
             </trans-unit>
-            <trans-unit id="destination_view">
-                <source>destination_view</source>
+            <trans-unit id="title.country_list">
+                <source>title.country_list</source>
+                <target>Lista krajów</target>
+            </trans-unit>
+            <trans-unit id="title.destination_view">
+                <source>title.destination_view</source>
                 <target>Miejscówka nr #%id%</target>
             </trans-unit>
+            <trans-unit id="title.country_delete">
+                <source>title.country_delete</source>
+                <target>Czy na pewno chcesz usunąć kraj?</target>
+            </trans-unit>
+            <trans-unit id="title.destination_delete">
+                <source>title.destination_delete</source>
+                <target>Czy na pewno chcesz usunąć miejscówkę?</target>
+            </trans-unit>
+            <trans-unit id="title.destination_edit">
+                <source>title.destination_edit</source>
+                <target>Edycja miejscówki</target>
+            </trans-unit>
+
+            <trans-unit id="title.country_edit">
+                <source>title.country_edit</source>
+                <target>Edycja kraju</target>
+            </trans-unit>
+            <trans-unit id="action.back_to_list">
+                <source>action.back_to_list</source>
+                <target>Wróc do listy</target>
+            </trans-unit>
+            <trans-unit id="action.save">
+                <source>action.save</source>
+                <target>Potwierdź</target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>

@@ -30,14 +30,43 @@
                 <source>action.delete</source>
                 <target>Delete</target>
             </trans-unit>
-            <trans-unit id="destination_listt">
-                <source>destination_list</source>
+            <trans-unit id="title.destination_list">
+                <source>title.destination_list</source>
                 <target>Destinations list</target>
             </trans-unit>
-            <trans-unit id="destination_view">
-                <source>destination_view</source>
+            <trans-unit id="title.country_list">
+                <source>title.country_list</source>
+                <target>Country list</target>
+            </trans-unit>
+            <trans-unit id="title.destination_view">
+                <source>title.destination_view</source>
                 <target>Destination #%id%</target>
             </trans-unit>
+            <trans-unit id="title.country_delete">
+                <source>title.country_delete</source>
+                <target>Are you sure you want to delete?</target>
+            </trans-unit>
+            <trans-unit id="title.destination_delete">
+                <source>title.destination_delete</source>
+                <target>Are you sure you want to delete destination?</target>
+            </trans-unit>
+            <trans-unit id="title.destination_edit">
+                <source>title.destination_edit</source>
+                <target>Editing destination</target>
+            </trans-unit>
+            <trans-unit id="title.country_edit">
+                <source>title.country_edit</source>
+                <target>Country editing</target>
+            </trans-unit>
+            <trans-unit id="action.back_to_list">
+                <source>action.back_to_list</source>
+                <target>Back to list</target>
+            </trans-unit>
+            <trans-unit id="action.save">
+                <source>action.save</source>
+                <target>Save</target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>
