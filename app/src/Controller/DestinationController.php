@@ -97,6 +97,7 @@ class DestinationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $destination->setAuthor($this->getUser());
             $repository->save($destination);
 
             $this->addFlash('success', 'message.created_successfully');

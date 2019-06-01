@@ -57,6 +57,12 @@ class Destination
      */
     private $country;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="destinations")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $author;
+
 
     /**
      * Use constants to define configuration options that rarely change instead
@@ -105,6 +111,18 @@ class Destination
     public function setCountry(?Country $country): self
     {
         $this->country = $country;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }

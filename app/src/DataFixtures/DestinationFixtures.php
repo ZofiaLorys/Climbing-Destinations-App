@@ -26,6 +26,8 @@ class DestinationFixtures extends AbstractBaseFixtures implements DependentFixtu
             $destination->setTitle($this->faker->word);
             $destination->setDescription($this->faker->paragraph);
             $destination->setCountry($this->getRandomReference('countries'));
+            $destination->setAuthor($this->getRandomReference('users'));
+
 
 
             return $destination;
@@ -42,6 +44,6 @@ class DestinationFixtures extends AbstractBaseFixtures implements DependentFixtu
      */
     public function getDependencies(): array
     {
-        return [CountryFixtures::class];
+        return [CountryFixtures::class, UserFixtures::class];
     }
 }
