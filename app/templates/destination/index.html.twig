@@ -41,14 +41,18 @@
                         </a>
                     </td>
                     <td>
-                        <a href="{{ url('destination_edit', {id: destination.id}) }}" title="{{ 'action.edit'|trans }}">
-                            {{ 'action.edit'|trans }}
-                        </a>
+                        {% if destination.author == app.user %}
+                            <a href="{{ url('destination_edit', {id: destination.id}) }}" title="{{ 'action.edit'|trans }}">
+                                {{ 'action.edit'|trans }}
+                            </a>
+                        {% endif %}
                     </td>
                     <td>
-                        <a href="{{ url('destination_delete', {id: destination.id}) }}" title="{{ 'action.delete'|trans }}">
-                            {{ 'action.delete'|trans }}
-                        </a>
+                        {% if destination.author == app.user %}
+                            <a href="{{ url('destination_delete', {id: destination.id}) }}" title="{{ 'action.delete'|trans }}">
+                                {{ 'action.delete'|trans }}
+                            </a>
+                        {% endif %}
 
                     </td>
                 </tr>

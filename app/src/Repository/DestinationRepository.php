@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Destination;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -38,6 +39,23 @@ class DestinationRepository extends ServiceEntityRepository
     {
         return $this->getOrCreateQueryBuilder()
             ->orderBy('t.id', 'DESC')->join('t.country','c');
+    }
+
+
+    /**
+     * @param User|null $user
+     * @return QueryBuilder
+     */
+    public function queryByAuthor(User $user = null): QueryBuilder
+    {
+        $queryBuilder = $this->queryAll();
+
+        if (!is_null($user)) {
+            $queryBuilder->andWhere('t.author = :author')
+                ->setParameter('author', $user);
+        }
+
+        return $queryBuilder;
     }
 
     /**

@@ -92,6 +92,7 @@ class DestinationController extends AbstractController
      */
     public function new(Request $request, DestinationRepository $repository): Response
     {
+
         $destination = new Destination();
         $form = $this->createForm(DestinationType::class, $destination);
         $form->handleRequest($request);
@@ -132,6 +133,11 @@ class DestinationController extends AbstractController
      */
     public function edit(Request $request, Destination $destination, DestinationRepository $repository): Response
     {
+        if ($destination->getAuthor() !== $this->getUser()) {
+            $this->addFlash('warning', 'message.item_not_found');
+            return $this->redirectToRoute('destination_index');
+        }
+
         $form = $this->createForm(DestinationType::class, $destination, ['method' => 'PUT']);
         $form->handleRequest($request);
 
@@ -173,6 +179,12 @@ class DestinationController extends AbstractController
      */
     public function delete(Request $request, Destination $destination, DestinationRepository $repository): Response
     {
+
+        if ($destination->getAuthor() !== $this->getUser()) {
+            $this->addFlash('warning', 'message.item_not_found');
+            return $this->redirectToRoute('destination_index');
+        }
+
         $form = $this->createForm(FormType::class, $destination, ['method' => 'DELETE']);
         $form->handleRequest($request);
 

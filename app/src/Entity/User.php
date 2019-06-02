@@ -119,9 +119,11 @@ class User implements UserInterface
      */
     private $destinations;
 
+
     public function __construct()
     {
         $this->destinations = new ArrayCollection();
+
     }
 
     /**
@@ -275,6 +277,11 @@ class User implements UserInterface
                 $destination->setAuthor(null);
             }
         }
+
+        return $this;
+    }
+
+
 
         return $this;
     }
