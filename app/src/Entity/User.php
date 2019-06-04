@@ -119,10 +119,16 @@ class User implements UserInterface
      */
     private $destinations;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Ranking", mappedBy="voter", orphanRemoval=true)
+     */
+    private $rankings;
+
 
     public function __construct()
     {
         $this->destinations = new ArrayCollection();
+        $this->rankings = new ArrayCollection();
 
     }
 
@@ -281,8 +287,36 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return Collection|Ranking[]
+     */
+    public function getRankings(): Collection
+    {
+        return $this->rankings;
+    }
 
+    public function addRanking(Ranking $ranking): self
+    {
+        if (!$this->rankings->contains($ranking)) {
+            $this->rankings[] = $ranking;
+            $ranking->setVoter($this);
+        }
 
         return $this;
     }
+
+    public function removeRanking(Ranking $ranking): self
+    {
+        if ($this->rankings->contains($ranking)) {
+            $this->rankings->removeElement($ranking);
+            // set the owning side to null (unless already changed)
+            if ($ranking->getVoter() === $this) {
+                $ranking->setVoter(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 }
