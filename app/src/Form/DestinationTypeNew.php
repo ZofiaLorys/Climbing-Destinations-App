@@ -1,23 +1,24 @@
 <?php
 /**
- * Ranking type.
+ * Destination type new.
  */
 
 namespace App\Form;
 
+use App\Entity\Country;
 use App\Entity\Destination;
-use App\Entity\Ranking;
-use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class RankingType.
+ * Class DestinationType.
  */
-class RankingType extends AbstractType
+class DestinationTypeNew extends AbstractType
 {
     /**
      * Builds the form.
@@ -33,30 +34,38 @@ class RankingType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add(
-            'grade',
-            IntegerType::class,
+            'title',
+            TextType::class,
             [
-                'label' => 'grade.title',
+                'label' => 'label.title',
                 'required' => true,
                 'attr' => ['max_length' => 45],
             ]
-        );
-
+        )
+            ->add(
+                'description',
+                TextareaType::class,
+                [
+                    'label' => 'label.description',
+                    'required' => true,
+                    'attr' => ['max_length' => 505],
+                ]
+            );
 
         $builder->add(
-            'destination',
-            EntityType::class,
+            'country',
+            CountryType::class,
             [
-                'class' => Destination::class,
-                'choice_label' => function ($destination) {
-                    return $destination->getTitle();
-                },
-                'label' => 'label.destination',
-                'placeholder' => 'label.none',
+ #               'class' => Country::class,
+ #               'choice_label' => function ($country) {
+ #                   return $country->getTitle();
+ #               },
+                'label' => 'label.country',
+ #               'placeholder' => 'label.none',
                 'required' => true,
             ]
-        );
 
+        );
     }
 
     /**
@@ -66,7 +75,7 @@ class RankingType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults(['data_class' => Ranking::class]);
+        $resolver->setDefaults(['data_class' => Destination::class]);
     }
 
     /**
@@ -79,6 +88,6 @@ class RankingType extends AbstractType
      */
     public function getBlockPrefix(): string
     {
-        return 'ranking';
+        return 'destination';
     }
 }

@@ -32,12 +32,12 @@
                     <td>{{ country.destination.title }}</td>
 
                     <td>
-                        <a href="{{ url('country_edit', {id: country.id}) }}" title="{{ 'action.edit'|trans }}">
+                        <a href="{{ url('ranking_edit', {id: country.id}) }}" title="{{ 'action.edit'|trans }}">
                             {{ 'action.edit'|trans }}
                         </a>
                     </td>
                     <td>
-                        <a href="{{ url('country_delete', {id: country.id}) }}" title="{{ 'action.delete'|trans }}">
+                        <a href="{{ url('ranking_delete', {id: country.id}) }}" title="{{ 'action.delete'|trans }}">
                             {{ 'action.delete'|trans }}
                         </a>
 

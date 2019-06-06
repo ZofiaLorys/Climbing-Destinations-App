@@ -11,6 +11,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Ranking
 {
+
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -28,6 +30,8 @@ class Ranking
      * )
      */
     private $grade;
+
+
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="rankings")

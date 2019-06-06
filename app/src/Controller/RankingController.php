@@ -6,6 +6,7 @@
 namespace App\Controller;
 
 use App\Entity\Ranking;
+use App\Entity\Country;
 use App\Form\RankingType;
 use App\Repository\RankingRepository;
 use Knp\Component\Pager\PaginatorInterface;
@@ -98,6 +99,7 @@ class RankingController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $ranking->setVoter($this->getUser());
             $repository->save($ranking);
 
             $this->addFlash('success', 'message.created_successfully');

@@ -1,19 +1,14 @@
+composer.lock
+symfony.lock
+vendor/
+.env
+/composer.phar
 
-###> symfony/framework-bundle ###
-/.env.local
-/.env
-/.env.local.php
-/.env.*.local
-/public/bundles/
-/var/
-/vendor/
-###< symfony/framework-bundle ###
+bootstrap.php.cache
+var/cache/*
+!var/cache/.gitkeep
+var/log/*
+!var/log/.gitkeep
 
-###> friendsofphp/php-cs-fixer ###
-/.php_cs
-/.php_cs.cache
-###< friendsofphp/php-cs-fixer ###
-
-###> symfony/web-server-bundle ###
-/.web-server-pid
-###< symfony/web-server-bundle ###
+.php*
+s.php
