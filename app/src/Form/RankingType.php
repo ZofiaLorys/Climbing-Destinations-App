@@ -7,10 +7,9 @@ namespace App\Form;
 
 use App\Entity\Destination;
 use App\Entity\Ranking;
-use App\Entity\User;
+use App\Entity\Grade;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -34,11 +33,14 @@ class RankingType extends AbstractType
     {
         $builder->add(
             'grade',
-            IntegerType::class,
+            EntityType::class,
             [
+                'class' => Grade::class,
+                'choice_label' => function ($grade) {
+                    return $grade->getValue();
+                },
                 'label' => 'grade.title',
                 'required' => true,
-                'attr' => ['max_length' => 45],
             ]
         );
 

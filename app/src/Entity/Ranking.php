@@ -4,10 +4,15 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\RankingRepository")
  *
  * @ORM\Table(name="rankings")
+ *
+ * @UniqueEntity(fields = {"voter", "destination"})
+ *
  */
 class Ranking
 {
@@ -20,30 +25,26 @@ class Ranking
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="integer")
-     *
-     * @Assert\NotBlank
-     * @Assert\Type(
-     *     type="integer",
-     *     message="The value {{ value }} is not a valid {{ type }}."
-     * )
-     */
-    private $grade;
-
-
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="rankings")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank
      */
     private $voter;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Destination", inversedBy="rankings")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank
      */
     private $destination;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Grade", inversedBy="rankings")
+     */
+    private $grade;
 
 
     /**
@@ -61,12 +62,12 @@ class Ranking
         return $this->id;
     }
 
-    public function getGrade(): ?int
+    public function getGrade(): ?Grade
     {
         return $this->grade;
     }
 
-    public function setGrade(int $grade): self
+    public function setGrade(?Grade $grade): self
     {
         $this->grade = $grade;
 
