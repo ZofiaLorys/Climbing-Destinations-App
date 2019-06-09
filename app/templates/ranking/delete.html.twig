@@ -1,9 +1,0 @@
-{% include 'default/_form.html.twig' with {
-    page_title: 'title.ranking_delete',
-    page_title_param: {'%id%': ranking.id},
-    attr: {
-        method: 'DELETE',
-        action: url('ranking_delete', {'id': ranking.id}),
-    },
-    back_to_list_path: 'ranking_index',
-} %}

@@ -9,7 +9,7 @@
 </head>
 <body>
 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-    <div>{{ app.user.firstName }}</div>
+    <div>{{ app.user.fullName }}</div>
     <div>
         <a href="{{ url('security_logout') }}">{{ 'action.logout'|trans }}</a>
     </div>

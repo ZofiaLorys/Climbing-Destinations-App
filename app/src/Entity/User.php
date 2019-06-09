@@ -102,7 +102,7 @@ class User implements UserInterface
     private $roles = [];
 
     /**
-     * First name.
+     * Full Name.
      *
      * @ORM\Column(type="string", length=45)
      *
@@ -112,23 +112,19 @@ class User implements UserInterface
      *     max="45",
      * )
      */
-    private $firstName;
+    private $fullName;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Destination", mappedBy="author")
      */
     private $destinations;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Ranking", mappedBy="voter", orphanRemoval=true)
-     */
-    private $rankings;
 
 
     public function __construct()
     {
         $this->destinations = new ArrayCollection();
-        $this->rankings = new ArrayCollection();
+
 
     }
 
@@ -241,19 +237,19 @@ class User implements UserInterface
      *
      * @return string|null First name
      */
-    public function getFirstName(): ?string
+    public function getFullName(): ?string
     {
-        return $this->firstName;
+        return $this->fullName;
     }
 
     /**
      * Setter for the First Name.
      *
-     * @param string $firstName First Name
+     * @param string $fullName First Name
      */
-    public function setFirstName(string $firstName): void
+    public function setFullName(string $fullName): void
     {
-        $this->firstName = $firstName;
+        $this->fullName = $fullName;
     }
 
     /**
@@ -287,36 +283,7 @@ class User implements UserInterface
         return $this;
     }
 
-    /**
-     * @return Collection|Ranking[]
-     */
-    public function getRankings(): Collection
-    {
-        return $this->rankings;
-    }
 
-    public function addRanking(Ranking $ranking): self
-    {
-        if (!$this->rankings->contains($ranking)) {
-            $this->rankings[] = $ranking;
-            $ranking->setVoter($this);
-        }
-
-        return $this;
-    }
-
-    public function removeRanking(Ranking $ranking): self
-    {
-        if ($this->rankings->contains($ranking)) {
-            $this->rankings->removeElement($ranking);
-            // set the owning side to null (unless already changed)
-            if ($ranking->getVoter() === $this) {
-                $ranking->setVoter(null);
-            }
-        }
-
-        return $this;
-    }
 
 
 }

@@ -37,9 +37,9 @@ class Grade
 
 
     /*
-     * @ORM\ManyToOne(targetEntity="App\Entity\Ranking", inversedBy="grade", cascade={"persist", "remove"})
-     * ORM\JoinColumn(nullable=false)
-     */
+* @ORM\ManyToOne(targetEntity="App\Entity\Ranking", inversedBy="grade", cascade={"persist", "remove"})
+* ORM\JoinColumn(nullable=false)
+*/
    #private $ranking;
 
 

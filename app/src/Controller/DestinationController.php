@@ -40,7 +40,7 @@ class DestinationController extends AbstractController
     public function index(Request $request, DestinationRepository $repository, PaginatorInterface $paginator): Response
     {
         $pagination = $paginator->paginate(
-            $repository->queryAllWithAvgRanking(),
+            $repository->queryAll(),
            # $repository->average_destination(),
             $request->query->getInt('page', 1),
             Destination::NUMBER_OF_ITEMS
