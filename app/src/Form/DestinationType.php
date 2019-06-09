@@ -36,7 +36,7 @@ class DestinationType extends AbstractType
             'title',
             TextType::class,
             [
-                'label' => 'label.title',
+                'label' => 'label.destination',
                 'required' => true,
                 'attr' => ['max_length' => 45],
             ]

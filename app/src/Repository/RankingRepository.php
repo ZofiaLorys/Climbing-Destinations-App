@@ -100,4 +100,7 @@ class RankingRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    # SELECT AVG(value), destination_id FROM rankings NATURAL JOIN grades GROUP BY destination_id ;
+
 }

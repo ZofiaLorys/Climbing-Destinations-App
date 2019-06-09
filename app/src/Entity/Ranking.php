@@ -11,7 +11,11 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @ORM\Table(name="rankings")
  *
- * @UniqueEntity(fields = {"voter", "destination"})
+ * @UniqueEntity(
+ *     fields={"destination", "voter"},
+ *     message="Wpis oceny nie jest unikalny dla tabeli",
+ *     ignoreNull=false
+ * )
  *
  */
 class Ranking
@@ -27,16 +31,17 @@ class Ranking
 
 
     /**
+     *
+     *
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="rankings")
      * @ORM\JoinColumn(nullable=false)
-     * @Assert\NotBlank
      */
     private $voter;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Destination", inversedBy="rankings")
      * @ORM\JoinColumn(nullable=false)
-     * @Assert\NotBlank
+     *
      */
     private $destination;
 
@@ -98,3 +103,5 @@ class Ranking
         return $this;
     }
 }
+
+

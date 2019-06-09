@@ -17,9 +17,10 @@
             <tr>
                 <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 't.id') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.country'|trans, 'c.title') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 't.title') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.destination'|trans, 't.title') }}</th>
                 <th>{{ 'label.description'|trans }}</th>
                 <th>{{ 'label.author'|trans }}</th>
+                <th>{{ 'label.grade'|trans }}</th>
                 <th>{{ 'action.view'|trans }}</th>
                 <th>{{ 'action.edit'|trans }}</th>
                 <th>{{ 'action.delete'|trans }}</th>
@@ -34,6 +35,9 @@
                     <td>{{ destination.description }}</td>
                     <td>{{ destination.author.firstName }}</td>
 
+                    <td>
+                        {{ destination.avgRanking }}
+                    </td>
 
                     <td>
                         <a href="{{ url('destination_view', {id: destination.id}) }}" title="{{ 'action.view'|trans }}">

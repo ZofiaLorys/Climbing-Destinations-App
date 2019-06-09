@@ -10,14 +10,33 @@
                 <source>label.country</source>
                 <target>Kraj</target>
             </trans-unit>
-            <trans-unit id="label.title">
-                <source>label.title</source>
+            <trans-unit id="label.destination">
+                <source>label.destination</source>
                 <target>Miejscówka</target>
             </trans-unit>
             <trans-unit id="label.description">
                 <source>label.description</source>
                 <target>Opis</target>
             </trans-unit>
+            <trans-unit id="label.author">
+                <source>label.author</source>
+                <target>Autor</target>
+            </trans-unit>
+            <trans-unit id="label.grade">
+                <source>label.grade</source>
+                <target>Ocena</target>
+            </trans-unit>
+            <trans-unit id="label.email">
+                <source>label.email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="label.password">
+                <source>label.password</source>
+                <target>Hasło</target>
+            </trans-unit>
+
+
+
             <trans-unit id="action.view">
                 <source>action.view</source>
                 <target>Zobacz więcej</target>
@@ -29,6 +48,22 @@
             <trans-unit id="action.delete">
                 <source>action.delete</source>
                 <target>Usuń</target>
+            </trans-unit>
+            <trans-unit id="action.save">
+                <source>action.save</source>
+                <target>Potwierdź</target>
+            </trans-unit>
+            <trans-unit id="action.logout">
+                <source>action.logout</source>
+                <target>Wyloguj się</target>
+            </trans-unit>
+            <trans-unit id="action.signup">
+                <source>action.signup</source>
+                <target>Zarejestruj się</target>
+            </trans-unit>
+            <trans-unit id="action.back_to_list">
+                <source>action.back_to_list</source>
+                <target>Wróc do listy</target>
             </trans-unit>
             <trans-unit id="title.destination_list">
                 <source>title.destination_list</source>
@@ -59,14 +94,16 @@
                 <source>title.country_edit</source>
                 <target>Edycja kraju</target>
             </trans-unit>
-            <trans-unit id="action.back_to_list">
-                <source>action.back_to_list</source>
-                <target>Wróc do listy</target>
+            <trans-unit id="title.ranking_edit">
+                <source>title.ranking_edit</source>
+                <target>Edycja wyceny</target>
             </trans-unit>
-            <trans-unit id="action.save">
-                <source>action.save</source>
-                <target>Potwierdź</target>
+            <trans-unit id="title.login">
+                <source>title.login</source>
+                <target>Zaloguj się</target>
             </trans-unit>
+
+
 
         </body>
     </file>

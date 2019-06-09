@@ -39,7 +39,7 @@ class RankingType extends AbstractType
                 'choice_label' => function ($grade) {
                     return $grade->getValue();
                 },
-                'label' => 'grade.title',
+                'label' => 'label.grade',
                 'required' => true,
             ]
         );
@@ -54,7 +54,7 @@ class RankingType extends AbstractType
                     return $destination->getTitle();
                 },
                 'label' => 'label.destination',
-                'placeholder' => 'label.none',
+                'placeholder' => ' ',
                 'required' => true,
             ]
         );
