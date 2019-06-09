@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.destination_list'|trans }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.destination_list'|trans }}</h1>
+    {% if pagination is defined and pagination|length %}
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 't.id') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.country'|trans, 'c.title') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.destination'|trans, 't.title') }}</th>
+                <th>{{ 'label.description'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for destination in pagination %}
+                <tr>
+                    <td>{{ destination.id }}</td>
+                    <td>{{ destination.country.title }}</td>
+                    <td>{{ destination.title }}</td>
+                    <td>{{ destination.description }}</td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+    {% else %}
+        <p>
+            {{ 'message.empty_list'|trans }}
+        </p>
+    {% endif %}
+
+{% endblock %}
