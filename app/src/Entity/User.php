@@ -106,7 +106,7 @@ class User implements UserInterface
      *
      * @ORM\Column(type="string", length=45)
      *
-     * @Assert\NotBlank
+     *Assert\NotBlank
      * @Assert\Length(
      *     min="3",
      *     max="45",

@@ -43,13 +43,13 @@ class Country
      *
      * @ORM\Column(
      *     type="string",
-     *     length=45,
+     *     length=255,
      * )
      *
      * @Assert\NotBlank
      * @Assert\Length(
      *     min="3",
-     *     max="45",
+     *     max="255",
      * )
      */
     private $title;
