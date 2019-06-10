@@ -9,13 +9,15 @@
 </head>
 <body>
 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-    <div>{{ app.user.fullName }}</div>
+    <div>Witaj {{ app.user.fullName }}</div>
     <div>
         <a href="{{ url('security_logout') }}">{{ 'action.logout'|trans }}</a>
+        <a href="{{ url('destination/new') }}">{{ 'action.new-destination'|trans }}</a>
     </div>
 {% else %}
     <div>
         <a href="{{ url('security_login') }}">{{ 'action.login'|trans }}</a>
+        <a href="{{ url('app_register') }}">{{ 'action.register'|trans }}</a>
     </div>
 {% endif %}
 <div class="container-fluid">
