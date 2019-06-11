@@ -95,11 +95,12 @@ class RankingController extends AbstractController
     {
 
         $ranking = new Ranking();
+        $ranking->setVoter($this->getUser());
         $form = $this->createForm(RankingType::class, $ranking);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $ranking->setVoter($this->getUser());
+
             $repository->save($ranking);
 
             $this->addFlash('success', 'message.created_successfully');
