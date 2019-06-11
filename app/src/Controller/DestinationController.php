@@ -15,6 +15,9 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 
 /**
  * Class DestinationController.
@@ -154,6 +157,7 @@ class DestinationController extends AbstractController
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      *
+     *
      * @Route(
      *     "/{id}/edit",
      *     methods={"GET", "PUT"},
@@ -163,29 +167,33 @@ class DestinationController extends AbstractController
      */
     public function edit(Request $request, Destination $destination, DestinationRepository $repository): Response
     {
-        if ($destination->getAuthor() !== $this->getUser() or isGranted('ROLE_ADMIN')) {
+        if (($destination->getAuthor() !== $this->getUser()) || !($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN'))) {
+
+            $form = $this->createForm(DestinationType::class, $destination, ['method' => 'PUT']);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $repository->save($destination);
+
+                $this->addFlash('success', 'message.updated_successfully');
+
+                return $this->redirectToRoute('destination_index');
+            }
+
+            return $this->render(
+                'destination/edit.html.twig',
+                [
+                    'form' => $form->createView(),
+                    'destination' => $destination,
+                ]
+            );
+
+        } else {
             $this->addFlash('warning', 'message.item_not_found');
             return $this->redirectToRoute('destination_index');
         }
 
-        $form = $this->createForm(DestinationType::class, $destination, ['method' => 'PUT']);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $repository->save($destination);
-
-            $this->addFlash('success', 'message.updated_successfully');
-
-            return $this->redirectToRoute('destination_index');
-        }
-
-        return $this->render(
-            'destination/edit.html.twig',
-            [
-                'form' => $form->createView(),
-                'destination' => $destination,
-            ]
-        );
     }
 
     /**

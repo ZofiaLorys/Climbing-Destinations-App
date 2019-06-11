@@ -62,9 +62,25 @@
                 <source>action.save</source>
                 <target>Save</target>
             </trans-unit>
-            <trans-unit id="title.destination_list">
-                <source>title.destination_list</source>
+            <trans-unit id="action.new-destination">
+                <source>action.new-destination</source>
+                <target>New Destination</target>
+            </trans-unit>
+            <trans-unit id="action.index-destination">
+                <source>action.index-destination</source>
                 <target>Destinations list</target>
+            </trans-unit>
+            <trans-unit id="action.destination-by-author">
+                <source>action.destination-by-author</source>
+                <target>Your destinations</target>
+            </trans-unit>
+            <trans-unit id="action.login">
+                <source>action.login</source>
+                <target>Sign in</target>
+            </trans-unit>
+            <trans-unit id="action.register">
+                <source>action.register</source>
+                <target>Sign up</target>
             </trans-unit>
             <trans-unit id="title.country_list">
                 <source>title.country_list</source>
