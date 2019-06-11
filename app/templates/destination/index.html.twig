@@ -43,14 +43,16 @@
                         </a>
                     </td>
                     <td>
-                        {% if destination.author == app.user %}
+
+                        {% if (destination.author == app.user or is_granted('ROLE_ADMIN'))  %}
                             <a href="{{ url('destination_edit', {id: destination.id}) }}" title="{{ 'action.edit'|trans }}">
                                 {{ 'action.edit'|trans }}
                             </a>
+
                         {% endif %}
                     </td>
                     <td>
-                        {% if destination.author == app.user %}
+                        {% if destination.author == app.user or is_granted('ROLE_ADMIN') %}
                             <a href="{{ url('destination_delete', {id: destination.id}) }}" title="{{ 'action.delete'|trans }}">
                                 {{ 'action.delete'|trans }}
                             </a>

@@ -52,6 +52,34 @@ class DestinationController extends AbstractController
         );
     }
 
+    /**
+     * IndexByAuthor action.
+     *
+     * @param \Symfony\Component\HttpFoundation\Request $request    HTTP request
+     * @param \App\Repository\DestinationRepository $repository Repository
+     * @param \Knp\Component\Pager\PaginatorInterface   $paginator  Paginator
+     *
+     * @return \Symfony\Component\HttpFoundation\Response HTTP response
+     *
+     * @Route(
+     *     "/by_author",
+     *     name="destination_index_by_author",
+     * )
+     */
+    public function indexbyauthor(Request $request, DestinationRepository $repository, PaginatorInterface $paginator): Response
+    {
+        $pagination = $paginator->paginate(
+            $repository->queryByAuthor($this->getUser()),
+            $request->query->getInt('page', 1),
+            Destination::NUMBER_OF_ITEMS
+        );
+
+        return $this->render(
+            'destination/index.html.twig',
+            ['pagination' => $pagination]
+        );
+    }
+
 
 
     /**
@@ -135,7 +163,7 @@ class DestinationController extends AbstractController
      */
     public function edit(Request $request, Destination $destination, DestinationRepository $repository): Response
     {
-        if ($destination->getAuthor() !== $this->getUser()) {
+        if ($destination->getAuthor() !== $this->getUser() or isGranted('ROLE_ADMIN')) {
             $this->addFlash('warning', 'message.item_not_found');
             return $this->redirectToRoute('destination_index');
         }
@@ -182,7 +210,7 @@ class DestinationController extends AbstractController
     public function delete(Request $request, Destination $destination, DestinationRepository $repository): Response
     {
 
-        if ($destination->getAuthor() !== $this->getUser()) {
+        if ($destination->getAuthor() !== $this->getUser() or isGranted('ROLE_ADMIN')) {
             $this->addFlash('warning', 'message.item_not_found');
             return $this->redirectToRoute('destination_index');
         }

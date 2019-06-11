@@ -11,8 +11,11 @@
 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
     <div>Witaj {{ app.user.fullName }}</div>
     <div>
+        <a href="{{ url('destination_new') }}">{{ 'action.new-destination'|trans }}</a>
+        <a href="{{ url('destination_index') }}">{{ 'action.index-destination'|trans }}</a>
+        <a href="{{ url('destination_index_by_author') }}">{{ 'action.destination-by-author'|trans }}</a>
         <a href="{{ url('security_logout') }}">{{ 'action.logout'|trans }}</a>
-        <a href="{{ url('destination/new') }}">{{ 'action.new-destination'|trans }}</a>
+
     </div>
 {% else %}
     <div>
