@@ -1,0 +1,8 @@
+{% include 'default/_form.html.twig' with {
+    page_title: 'title.ranking_new',
+    attr: {
+        method: 'POST',
+        action: url('ranking_new', {destination_id: destination})
+    },
+    back_to_list_path: 'ranking_index',
+} %}

@@ -37,9 +37,11 @@ class DestinationRepository extends ServiceEntityRepository
      */
     public function queryAll(): QueryBuilder
     {
-        return $this->getOrCreateQueryBuilder()
-            ->orderBy('t.id', 'DESC')
-            ->join('t.country', 'c');
+
+            return $this->getOrCreateQueryBuilder()
+                ->orderBy('t.id', 'DESC')
+                ->join('t.country', 'c')
+                ->join('t.rankings', 'r');
 
     }
 
@@ -60,19 +62,22 @@ class DestinationRepository extends ServiceEntityRepository
         return $queryBuilder;
     }
 
+
+#SELECT AVG(value), destination_id FROM rankings NATURAL JOIN grades WHERE destination_id = 705 GROUP BY destination_id ;
+
     public function queryAllWithAvgRanking(): QueryBuilder
     {
         $queryBuilder = $this->queryAll();
-
-           $queryBuilder
-               ->addSelect("avg(g.value)")
-               ->join('r.grade', 'g', 'WITH', 'r.grade = g.id')
-               ->groupBy('r.destination');
-
-
+        $queryBuilder
+            ->select('t.id, t.description, t.country.title,  avg(g.value) AS avgRanking')
+            ->join('r.grade', 'g', 'WITH', 'r.grade = g.id')
+            ->groupBy('r.destination');
         return $queryBuilder;
     }
 
+
+
+#SELECT AVG(value), destination_id FROM rankings NATURAL JOIN grades WHERE destination_id = 705 GROUP BY destination_id ;
     public function average_destination(): QueryBuilder
     {
 

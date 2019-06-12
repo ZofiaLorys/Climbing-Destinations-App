@@ -20,6 +20,8 @@
                 <th>{{ knp_pagination_sortable(pagination, 'label.destination'|trans, 't.title') }}</th>
                 <th>{{ 'label.description'|trans }}</th>
                 <th>{{ 'label.author'|trans }}</th>
+                <td>{{ 'average-ranking'|trans }}</td>
+                <td>{{ 'action.new-grade'|trans }}</td>
                 <th>{{ 'action.view'|trans }}</th>
                 <th>{{ 'action.edit'|trans }}</th>
                 <th>{{ 'action.delete'|trans }}</th>
@@ -33,9 +35,15 @@
                     <td>{{ destination.title }}</td>
                     <td>{{ destination.description }}</td>
                     <td>{{ destination.author.fullName }}</td>
+                    <td>average-ranking</td>
 
 
 
+                    <td>
+                        <a href="{{ url('ranking_new', {destination_id: destination.id}) }}" title="{{ 'ranking_new'|trans }}">
+                            {{ 'ranking_new'|trans }}
+                        </a>
+                    </td>
 
                     <td>
                         <a href="{{ url('destination_view', {id: destination.id}) }}" title="{{ 'action.view'|trans }}">

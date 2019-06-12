@@ -63,12 +63,16 @@ class Destination
      */
     private $author;
 
-  /*
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Ranking", mappedBy="destination", orphanRemoval=true)
+     */
+    private $rankings;
+
+
     public function __construct()
     {
         $this->rankings = new ArrayCollection();
     }
-*/
 
     /**
      * Use constants to define configuration options that rarely change instead
@@ -130,6 +134,26 @@ class Destination
     {
         $this->author = $author;
 
+        return $this;
+    }
+
+    public function addRanking(Ranking $ranking): self
+    {
+        if (!$this->rankings->contains($ranking)) {
+            $this->rankings[] = $ranking;
+            $ranking->setDestination($this);
+        }
+        return $this;
+    }
+    public function removeRanking(Ranking $ranking): self
+    {
+        if ($this->rankings->contains($ranking)) {
+            $this->rankings->removeElement($ranking);
+            // set the owning side to null (unless already changed)
+            if ($ranking->getDestination() === $this) {
+                $ranking->setDestination(null);
+            }
+        }
         return $this;
     }
 

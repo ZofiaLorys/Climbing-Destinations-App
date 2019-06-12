@@ -119,14 +119,13 @@ class User implements UserInterface
      */
     private $destinations;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Ranking", mappedBy="voter", orphanRemoval=true)
+     */
+    private $rankings;
 
 
-    public function __construct()
-    {
-        $this->destinations = new ArrayCollection();
 
-
-    }
 
     /**
      * Getter for the Id.
@@ -169,6 +168,14 @@ class User implements UserInterface
     public function getUsername(): string
     {
         return (string) $this->email;
+    }
+
+
+
+    public function __construct()
+    {
+        $this->destinations = new ArrayCollection();
+        $this->rankings = new ArrayCollection();
     }
 
     /**
