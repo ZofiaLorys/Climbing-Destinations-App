@@ -39,9 +39,12 @@ class DestinationRepository extends ServiceEntityRepository
     {
 
             return $this->getOrCreateQueryBuilder()
-                ->orderBy('t.id', 'DESC')
-                ->join('t.country', 'c')
-                ->join('t.rankings', 'r');
+                ->orderBy('destinationTable.id', 'DESC')
+                ->join('destinationTable.rankings', 'rankingTable')
+                ->join('destinationTable.country', 'countryTable')
+                ->join('destinationTable.author', 'userTable')
+                ->join('rankingTable.grade', 'gradeTable');
+
 
     }
 
@@ -55,7 +58,7 @@ class DestinationRepository extends ServiceEntityRepository
         $queryBuilder = $this->queryAll();
 
         if (!is_null($user)) {
-            $queryBuilder->andWhere('t.author = :author')
+            $queryBuilder->andWhere('destinationTable.author = :author')
                 ->setParameter('author', $user);
         }
 
@@ -69,14 +72,13 @@ class DestinationRepository extends ServiceEntityRepository
     {
         $queryBuilder = $this->queryAll();
         $queryBuilder
-            ->select('t.id, t.description, t.country.title,  avg(g.value) AS avgRanking')
-            ->join('r.grade', 'g', 'WITH', 'r.grade = g.id')
-            ->groupBy('r.destination');
+            ->select('AVG(gradeTable.value) as average, destinationTable.id, countryTable.title AS country, destinationTable.title, destinationTable.description, userTable.fullName AS author')
+            ->groupBy('rankingTable.destination');
         return $queryBuilder;
     }
 
 
-
+/*
 #SELECT AVG(value), destination_id FROM rankings NATURAL JOIN grades WHERE destination_id = 705 GROUP BY destination_id ;
     public function average_destination(): QueryBuilder
     {
@@ -88,7 +90,7 @@ class DestinationRepository extends ServiceEntityRepository
             ->groupBy('r.destination_id');
 
     }
-
+/*
 
     /**
      * Save record.
@@ -127,7 +129,7 @@ class DestinationRepository extends ServiceEntityRepository
      */
     private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
     {
-        return $queryBuilder ?: $this->createQueryBuilder('t');
+        return $queryBuilder ?: $this->createQueryBuilder('destinationTable');
     }
 
     // /**
