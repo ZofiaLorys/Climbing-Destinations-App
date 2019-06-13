@@ -45,12 +45,10 @@ class DestinationController extends AbstractController
         $pagination = $paginator->paginate(
             $repository->queryAllWithAvgRanking(),
             #$repository->queryAll(),
-           # $repository->average_destination(),
             $request->query->getInt('page', 1),
             Destination::NUMBER_OF_ITEMS
         );
 
-        dump($pagination);
 
         return $this->render(
             'destination/index.html.twig',

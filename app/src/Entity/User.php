@@ -84,8 +84,8 @@ class User implements UserInterface
      *
      * @ORM\Column(type="string", length=255)
      *
-     * Assert\NotBlank
-     * Assert\Length(
+     * @Assert\NotBlank
+     * @Assert\Length(
      *     min="3",
      *     max="255",
      * )
@@ -93,6 +93,10 @@ class User implements UserInterface
      * SecurityAssert\UserPassword
      */
     private $password;
+
+
+# musimy stworzyć grupy walidacji tak żeby SecurityAssert\UserPassword działał ale był wyłączony tylko dla rejestracji
+#dla logowania ma działać, dla edytowania sama nie wiem :D
 
     /**
      * Roles.
@@ -288,6 +292,17 @@ class User implements UserInterface
         }
 
         return $this;
+    }
+
+
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
     }
 
 
