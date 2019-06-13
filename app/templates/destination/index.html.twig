@@ -45,7 +45,7 @@
                     <td>{{ destination.title }}</td>
                     <td>{{ destination.description }}</td>
                     <td>{{ destination.author }}</td>
-                    <td>{{ destination.average }}</td>
+                    <td>{{ destination.average|default('passed var is empty') }}</td>
 
                     <td>
                         <a href="{{ url('ranking_new', {destination_id: destination.id}) }}" title="{{ 'ranking_new'|trans }}">

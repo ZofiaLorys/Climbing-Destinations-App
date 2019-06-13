@@ -126,20 +126,18 @@ class DestinationController extends AbstractController
      */
     public function new(Request $request, DestinationRepository $repository): Response
     {
-
         $destination = new Destination();
         $form = $this->createForm(DestinationType::class, $destination);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $destination->setAuthor($this->getUser());
             $repository->save($destination);
-
+            $destination_id = $destination->getId();
             $this->addFlash('success', 'message.created_successfully');
-
-            return $this->redirectToRoute('destination_index');
+            return $this->redirectToRoute('ranking_new', array(
+                'destination_id' => $destination_id,
+            ));
         }
-
         return $this->render(
             'destination/new.html.twig',
             ['form' => $form->createView()]
