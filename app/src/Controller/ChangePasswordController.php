@@ -22,21 +22,24 @@ class ChangePasswordController extends AbstractController
     /**
      * @Route("/changepassword", name="change_password")
      */
-public function ChangePassword()
+public function ChangePassword(Request $request)
 {
-$changePassword = new ChangePassword();
-$form = $this->createForm( ChangePasswordType::class, $changePassword);
+    $changePassword = new ChangePassword();
+    $form = $this->createForm( ChangePasswordType::class, $changePassword);
+    $form->handleRequest($request);
 
-$form->handleRequest($request);
+    if ($form->isSubmitted() && $form->isValid()) {
+        $user->setPassword(
+            $passwordEncoder->encodePassword(
+                $user,
+                $ChangePassword->getNewPassword()
+            )
+        );
+        return $this->redirectToRoute('destination_index');
+    }
 
-if ($form->isSubmitted() && $form->isValid()) {
-// perform some action,
-// such as encoding with MessageDigestPasswordEncoder and persist
-    return $this->redirectToRoute('destination_index');
-}
-
-return $this->render('register.html.twig', array(
-'form' => $form->createView(),
+    return $this->render('registration/register.html.twig', array(
+    'form' => $form->createView(),
 ));
 }
 }

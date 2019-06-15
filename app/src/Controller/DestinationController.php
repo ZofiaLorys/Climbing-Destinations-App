@@ -73,7 +73,7 @@ class DestinationController extends AbstractController
     public function indexbyauthor(Request $request, DestinationRepository $repository, PaginatorInterface $paginator): Response
     {
         $pagination = $paginator->paginate(
-            $repository->queryAllWithAvgRanking(),
+            $repository->queryByAuthor($this->getUser()),
             $request->query->getInt('page', 1),
             Destination::NUMBER_OF_ITEMS
         );
@@ -166,7 +166,9 @@ class DestinationController extends AbstractController
      */
     public function edit(Request $request, Destination $destination, DestinationRepository $repository): Response
     {
-        if (($destination->getAuthor() !== $this->getUser()) || !($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN'))) {
+
+
+        if (($destination->getAuthor() == $this->getUser()) || ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN'))) {
 
             $form = $this->createForm(DestinationType::class, $destination, ['method' => 'PUT']);
             $form->handleRequest($request);
@@ -217,31 +219,35 @@ class DestinationController extends AbstractController
     public function delete(Request $request, Destination $destination, DestinationRepository $repository): Response
     {
 
-        if ($destination->getAuthor() !== $this->getUser() or isGranted('ROLE_ADMIN')) {
+
+        if (($destination->getAuthor() == $this->getUser()) || ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN'))) {
+
+
+            $form = $this->createForm(FormType::class, $destination, ['method' => 'DELETE']);
+            $form->handleRequest($request);
+
+            if ($request->isMethod('DELETE') && !$form->isSubmitted()) {
+                $form->submit($request->request->get($form->getName()));
+            }
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $repository->delete($destination);
+                $this->addFlash('success', 'message.deleted_successfully');
+
+                return $this->redirectToRoute('destination_index');
+            }
+
+            return $this->render(
+                'destination/delete.html.twig',
+                [
+                    'form' => $form->createView(),
+                    'destination' => $destination,
+                ]
+            );
+
+        } else {
             $this->addFlash('warning', 'message.item_not_found');
             return $this->redirectToRoute('destination_index');
         }
-
-        $form = $this->createForm(FormType::class, $destination, ['method' => 'DELETE']);
-        $form->handleRequest($request);
-
-        if ($request->isMethod('DELETE') && !$form->isSubmitted()) {
-            $form->submit($request->request->get($form->getName()));
-        }
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $repository->delete($destination);
-            $this->addFlash('success', 'message.deleted_successfully');
-
-            return $this->redirectToRoute('destination_index');
-        }
-
-        return $this->render(
-            'destination/delete.html.twig',
-            [
-                'form' => $form->createView(),
-                'destination' => $destination,
-            ]
-        );
     }
 }

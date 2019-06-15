@@ -99,7 +99,7 @@ class RankingController extends AbstractController
 
             $repositoryRanking->save($ranking);
             $this->addFlash('success', 'message.created_successfully');
-            return $this->redirectToRoute('ranking_index');
+            return $this->redirectToRoute('destination_index');
         }
         return $this->render(
             'ranking/new.html.twig',

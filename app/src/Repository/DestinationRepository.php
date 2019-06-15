@@ -55,7 +55,7 @@ class DestinationRepository extends ServiceEntityRepository
      */
     public function queryByAuthor(User $user = null): QueryBuilder
     {
-        $queryBuilder = $this->queryAll();
+        $queryBuilder = $this->queryAllWithAvgRanking();
 
         if (!is_null($user)) {
             $queryBuilder->andWhere('destinationTable.author = :author')
@@ -66,13 +66,14 @@ class DestinationRepository extends ServiceEntityRepository
     }
 
 
+
 #SELECT AVG(value), destination_id FROM rankings NATURAL JOIN grades WHERE destination_id = 705 GROUP BY destination_id ;
 
     public function queryAllWithAvgRanking(): QueryBuilder
     {
         $queryBuilder = $this->queryAll();
         $queryBuilder
-            ->select('AVG(gradeTable.value) as average, destinationTable.id, countryTable.title AS country, destinationTable.title, destinationTable.description, userTable.fullName AS author')
+            ->select('AVG(gradeTable.value) as average, destinationTable.id, countryTable.title AS country, destinationTable.title, destinationTable.description, userTable.email AS email, userTable.fullName AS author')
             ->groupBy('rankingTable.destination');
         return $queryBuilder;
     }
