@@ -74,8 +74,8 @@ class User implements UserInterface
      *     length=45,
      * )
      *
-     * @Assert\NotBlank(groups={"register"})
-     * @Assert\Email(groups={"register"})
+     * @Assert\NotBlank
+     * @Assert\Email
      */
     private $email;
 
@@ -84,13 +84,13 @@ class User implements UserInterface
      *
      * @ORM\Column(type="string", length=255)
      *
-     * @Assert\NotBlank(groups={"register"})
+     * @Assert\NotBlank
      * @Assert\Length(
      *     min="6",
      *     max="255",
-     * )(groups={"register"})
+     * )
      *
-     * @SecurityAssert\UserPassword
+     * SecurityAssert\UserPassword
      */
     private $password;
 
@@ -110,7 +110,7 @@ class User implements UserInterface
      *
      * @ORM\Column(type="string", length=45)
      *
-     *Assert\NotBlank
+     * @Assert\NotBlank
      * @Assert\Length(
      *     min="3",
      *     max="45",

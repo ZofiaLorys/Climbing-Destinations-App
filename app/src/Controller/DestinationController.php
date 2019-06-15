@@ -73,7 +73,7 @@ class DestinationController extends AbstractController
     public function indexbyauthor(Request $request, DestinationRepository $repository, PaginatorInterface $paginator): Response
     {
         $pagination = $paginator->paginate(
-            $repository->queryByAuthor($this->getUser()),
+            $repository->queryAllWithAvgRanking(),
             $request->query->getInt('page', 1),
             Destination::NUMBER_OF_ITEMS
         );
