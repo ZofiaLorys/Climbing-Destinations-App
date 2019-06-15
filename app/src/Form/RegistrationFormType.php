@@ -48,6 +48,13 @@ class RegistrationFormType extends AbstractType
         $resolver->setDefaults([
             'data_class' => User::class,
         ]);
+
+        $resolver->setDefaults([
+                'validation_groups' => [
+                    User::class,
+                    'register',
+            ],
+        ]);
     }
     /**
      * Returns the prefix of the template block name for this type.
