@@ -5,6 +5,7 @@
 
 namespace App\Form;
 
+use App\Entity\ChangePassword;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -39,15 +40,13 @@ public function buildForm(FormBuilderInterface $builder, array $options)
 ]);
 }
 
-public function setDefaultOptions(OptionsResolverInterface $resolver)
-{
-$resolver->setDefaults(array(
-    'data_class' => ChangePassword::class,
-));
-}
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults(['data_class' => ChangePassword::class]);
+    }
 
-public function getName()
-{
-return 'change_passwd';
-}
+    public function getBlockPrefix(): string
+    {
+        return 'changePassword';
+    }
 }

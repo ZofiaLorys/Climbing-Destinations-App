@@ -61,7 +61,7 @@ public function getNewPassword(): ?string
  *
  * @param string $newPassword oldPassword
  */
-public function setNPassword(string $newPassword): void
+public function setNewPassword(string $newPassword): void
 {
     $this->newPassword = $newPassword;
 }
