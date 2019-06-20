@@ -39,7 +39,7 @@ class DestinationRepository extends ServiceEntityRepository
     {
 
             return $this->getOrCreateQueryBuilder()
-                ->orderBy('destinationTable.id', 'DESC')
+                ->orderBy('destinationTable.id', 'ASC')
                 ->join('destinationTable.rankings', 'rankingTable')
                 ->join('destinationTable.country', 'countryTable')
                 ->join('destinationTable.author', 'userTable')

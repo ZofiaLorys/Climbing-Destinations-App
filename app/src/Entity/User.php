@@ -127,7 +127,7 @@ class User implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Ranking", mappedBy="voter", orphanRemoval=true)
-     */
+  #   */
     private $rankings;
 
 
