@@ -37,7 +37,7 @@ class CountryRepository extends ServiceEntityRepository
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
-            ->orderBy('t.id', 'DESC');
+            ->orderBy('t.title', 'ASC');
     }
 
     /**
@@ -79,6 +79,10 @@ class CountryRepository extends ServiceEntityRepository
     {
         return $queryBuilder ?: $this->createQueryBuilder('t');
     }
+
+
+
+
 
     // /**
     //  * @return Country[] Returns an array of Country objects

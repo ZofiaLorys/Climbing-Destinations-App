@@ -15,6 +15,9 @@
         <a href="{{ url('destination_index') }}">{{ 'action.index-destination'|trans }}</a>
         <a href="{{ url('destination_index_by_author') }}">{{ 'action.destination-by-author'|trans }}</a>
         <a href="{{ url('security_logout') }}">{{ 'action.logout'|trans }}</a>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ url('user_index') }}">{{ 'action.users'|trans }}</a>
+        {% endif %}
 
     </div>
 {% else %}

@@ -73,25 +73,13 @@ class DestinationRepository extends ServiceEntityRepository
     {
         $queryBuilder = $this->queryAll();
         $queryBuilder
-            ->select('AVG(gradeTable.value) as average, destinationTable.id, countryTable.title AS country, destinationTable.title, destinationTable.description, userTable.email AS email, userTable.fullName AS author')
+            ->select('AVG(gradeTable.value) as average, destinationTable.id,  countryTable.title AS country, destinationTable.title, destinationTable.description, userTable.email AS email, userTable.fullName AS author')
             ->groupBy('rankingTable.destination');
         return $queryBuilder;
     }
 
 
-/*
-#SELECT AVG(value), destination_id FROM rankings NATURAL JOIN grades WHERE destination_id = 705 GROUP BY destination_id ;
-    public function average_destination(): QueryBuilder
-    {
 
-        return $this->getOrCreateQueryBuilder()
-            ->select("avg(r.value)")
-            #->innerJoin('r', 'grades', 'g', 'r.grade_id = g.id')
-            ->join('r.grades', 'g')
-            ->groupBy('r.destination_id');
-
-    }
-/*
 
     /**
      * Save record.

@@ -8,8 +8,9 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -31,21 +32,33 @@ class UserType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+
         $builder->add(
             'roles',
-            EntityType::class,
-            [
-                'class' => User::class,
-                'choice_label' => function ($country) {
-                    return $roles->getRoles();
-                },
-                'label' => 'label.country',
-                'placeholder' => 'label.none',
-                'required' => true,
+            ChoiceType::class, [
+                'choices' => [
+                    // we pass the string representation of roles array
+                    // which we want to be converted to normal array later
+                    'Admin' => 'ROLE_ADMIN,ROLE_USER',
+                    'User' => 'ROLE_USER',
+                ],
             ]
         );
 
-
+        $builder->get('roles')
+            ->addModelTransformer(new CallbackTransformer(
+                function ($rolesArray) {
+                    // transform the array to a string
+                    return implode(',', $rolesArray);
+                },
+                function ($rolesString) {
+                    // transform the string to an array
+                    // PHP documentation: https://www.php.net/manual/en/function.explode.php
+                    // Returns an array of strings created by
+                    // splitting the string on pieces formed by the delimiter (comma in our case)
+                    return explode(',', $rolesString);
+                }
+            ));
     }
 
     /**

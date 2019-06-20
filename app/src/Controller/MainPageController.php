@@ -35,6 +35,10 @@ class MainPageController extends AbstractController
      */
     public function index(Request $request, DestinationRepository $repository, PaginatorInterface $paginator): Response
     {
+        if($this->isGranted('ROLE_USER')){
+            return $this->redirectToRoute('destination_index');
+        }
+
         $pagination = $paginator->paginate(
             $repository->queryAll(),
             $request->query->getInt('page', 1),

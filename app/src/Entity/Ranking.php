@@ -10,7 +10,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @UniqueEntity(
  *     fields={"destination", "voter"},
- *     message="Wpis oceny nie jest unikalny dla tabeli",
+ *     message="Już zagłosowałeś na tą miejscowkę",
  *     ignoreNull=false
  * )
  *

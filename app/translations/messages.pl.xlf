@@ -34,6 +34,18 @@
                 <source>label.password</source>
                 <target>Hasło</target>
             </trans-unit>
+            <trans-unit id="label.average-ranking">
+                <source>label.average-ranking</source>
+                <target>Średnia ocena</target>
+            </trans-unit>
+            <trans-unit id="label.new-grade">
+                <source>label.new-grade</source>
+                <target>Jak oceniasz tą miejscówkę?</target>
+            </trans-unit>
+            <trans-unit id="label.fullname">
+                <source>label.fullname</source>
+                <target>Imię i Nazwisko</target>
+            </trans-unit>
 
 
 
@@ -85,6 +97,20 @@
                 <source>action.register</source>
                 <target>Zarejestruj się</target>
             </trans-unit>
+            <trans-unit id="action.ranking_new">
+                <source>action.ranking_new</source>
+                <target>Zagłosuj!</target>
+            </trans-unit>
+            <trans-unit id="action.users">
+                <source>action.users</source>
+                <target>Użytkownicy</target>
+            </trans-unit>
+            <trans-unit id="title.user_edit">
+                <source>title.user_edit</source>
+                <target>Zmień uprawnienia</target>
+            </trans-unit>
+
+
             <trans-unit id="title.destination_list">
             <source>title.destination_list</source>
             <target>Lista miejscówek</target>
@@ -122,9 +148,39 @@
                 <source>title.login</source>
                 <target>Zaloguj się</target>
             </trans-unit>
+            <trans-unit id="title.ranking_new">
+                <source>title.ranking_new</source>
+                <target>Zagłosuj na miejscówkę</target>
+            </trans-unit>
+            <trans-unit id="title.user_list">
+                <source>title.user_list</source>
+                <target>Użytkownicy</target>
+            </trans-unit>
+            <trans-unit id="title.user_delete">
+                <source>title.user_delete</source>
+                <target>Usuń użytkownika</target>
+            </trans-unit>
 
 
 
+
+            <trans-unit id="message.form_error">
+                <source>message.form_error</source>
+                <target>Błąd formularza</target>
+            </trans-unit>
+            <trans-unit id="message.created_successfully">
+                <source>message.created_successfully</source>
+                <target>Zmiany zostały zapisane</target>
+            </trans-unit>
+
+            <trans-unit id="message.updated_successfully">
+                <source>message.updated_successfully</source>
+                <target>Zmiany zostały zapisane</target>
+            </trans-unit>
+            <trans-unit id="message.deleted_successfully">
+                <source>message.deleted_successfully</source>
+                <target>Zmiany zostały zapisane</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

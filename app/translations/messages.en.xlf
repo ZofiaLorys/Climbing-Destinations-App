@@ -34,6 +34,21 @@
                 <source>label.grade</source>
                 <target>Grade</target>
             </trans-unit>
+            <trans-unit id="label.new-grade">
+                <source>label.new-grade</source>
+                <target>How cool is this destination?</target>
+            </trans-unit>
+            <trans-unit id="label.average-ranking">
+                <source>label.average-ranking</source>
+                <target>Average grade</target>
+            </trans-unit>
+            <trans-unit id="label.fullname">
+                <source>label.fullname</source>
+                <target>Fullname</target>
+            </trans-unit>
+
+
+
             <trans-unit id="action.view">
                 <source>action.view</source>
                 <target>See more</target>
@@ -82,6 +97,19 @@
                 <source>action.register</source>
                 <target>Sign up</target>
             </trans-unit>
+            <trans-unit id="action.users">
+                <source>action.users</source>
+                <target>Users</target>
+            </trans-unit>
+
+            <trans-unit id="action.change_roles">
+                <source>action.change_roles</source>
+                <target>Zmień rolę użytkownika</target>
+            </trans-unit>
+
+
+
+
             <trans-unit id="title.country_list">
                 <source>title.country_list</source>
                 <target>Country list</target>
@@ -114,9 +142,47 @@
                 <source>title.login</source>
                 <target>Log in</target>
             </trans-unit>
+            <trans-unit id="title.ranking_new">
+                <source>title.ranking_new</source>
+                <target>Vote for this destination</target>
+            </trans-unit>
+            <trans-unit id="title.user_list">
+                <source>title.user_list</source>
+                <target>Users</target>
+            </trans-unit>
+
+            <trans-unit id="title.user_edit">
+                <source>title.user_edit</source>
+                <target>Change role</target>
+            </trans-unit>
+
+            <trans-unit id="title.user_delete">
+                <source>title.user_delete</source>
+                <target>Delete user</target>
+            </trans-unit>
 
 
 
+
+
+
+            <trans-unit id="message.form_error">
+                <source>message.form_error</source>
+                <target>Form error</target>
+            </trans-unit>
+
+            <trans-unit id="message.created_successfully">
+                <source>message.created_successfully</source>
+                <target>Changes successfully saved</target>
+            </trans-unit>
+            <trans-unit id="message.updated_successfully">
+                <source>message.updated_successfully</source>
+                <target>Changes successfully saved</target>
+            </trans-unit>
+            <trans-unit id="message.deleted_successfully">
+                <source>message.deleted_successfully</source>
+                <target>Changes successfully saved</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

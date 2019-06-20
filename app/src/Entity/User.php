@@ -177,6 +177,13 @@ class User implements UserInterface
     }
 
 
+/**
+* @return Collection|Rankings[]
+*/
+    public function getRankings(): Collection
+    {
+        return $this->rankings;
+    }
 
     public function __construct()
     {

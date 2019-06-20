@@ -15,14 +15,13 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 
 /**
  * Class DestinationController.
  *
- * @Route("/destination")
+ * @Route("/destination"),
+ *
  */
 class DestinationController extends AbstractController
 {
@@ -52,7 +51,7 @@ class DestinationController extends AbstractController
 
         return $this->render(
             'destination/index.html.twig',
-            ['pagination' => $pagination]
+            ['pagination' => $pagination, dump($pagination)]
         );
     }
 

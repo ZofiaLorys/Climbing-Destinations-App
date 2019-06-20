@@ -14,9 +14,12 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * Class UserController.
+ *
+ * @IsGranted("ROLE_ADMIN")
  *
  * @Route("/user")
  */
@@ -133,7 +136,7 @@ class UserController extends AbstractController
     {
         $form = $this->createForm(UserType::class, $user, ['method' => 'PUT']);
         $form->handleRequest($request);
-
+        #dump($user);
         if ($form->isSubmitted() && $form->isValid()) {
             $repository->save($user);
 
@@ -172,6 +175,12 @@ class UserController extends AbstractController
      */
     public function delete(Request $request, User $user, UserRepository $repository): Response
     {
+        if ($user->getDestinations()->count()) {
+            $this->addFlash('warning', 'message.user_contains_destinations');
+
+            return $this->redirectToRoute('user_index');
+        }
+
         $form = $this->createForm(FormType::class, $user, ['method' => 'DELETE']);
         $form->handleRequest($request);
 
