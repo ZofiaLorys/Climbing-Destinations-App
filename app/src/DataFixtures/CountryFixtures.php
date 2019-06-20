@@ -19,10 +19,10 @@ class CountryFixtures extends AbstractBaseFixtures
      */
     public function loadData(ObjectManager $manager): void
     {
-        $this->createMany(244, 'countries', function ($i) {
+        $this->createMany(200, 'countries', function ($i) {
 
             $country = new Country();
-            $country->setTitle($this->faker->country);
+            $country->setTitle($this->faker->unique()->country);
             return $country;
         });
 
