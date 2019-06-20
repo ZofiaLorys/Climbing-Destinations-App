@@ -36,10 +36,12 @@ class Ranking
      *
      */
     private $destination;
+
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Grade", inversedBy="rankings")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Grade")
      */
     private $grade;
+
     /**
      * Use constants to define configuration options that rarely change instead
      * of specifying them in app/config/config.yml.

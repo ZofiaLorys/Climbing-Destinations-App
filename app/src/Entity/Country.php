@@ -66,7 +66,7 @@ class Country
      *
      * @ORM\OneToMany(
      *     targetEntity="App\Entity\Destination",
-     *     mappedBy="destination",
+     *     mappedBy="country",
      *      fetch="EXTRA_LAZY"
      * )
      */
