@@ -5,7 +5,6 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Ranking;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -20,15 +19,20 @@ class RankingFixtures extends AbstractBaseFixtures implements DependentFixtureIn
      * @param \Doctrine\Common\Persistence\ObjectManager $manager
      */
     public function loadData(ObjectManager $manager): void
-    {
+    {/*
+
         $this->createMany(5, 'rankings', function () {
             $ranking = new Ranking();
             $ranking->setGrade($this->getRandomReference('grades'));
+            $ranking->setVoter($this->getRandomReference('users'));
+            $ranking->setDestination($this->getRandomReference('destinations'));
+
 
             return $ranking;
+
         });
 
-        $manager->flush();
+        $manager->flush(); */
     }
 
     /**
@@ -39,6 +43,6 @@ class RankingFixtures extends AbstractBaseFixtures implements DependentFixtureIn
      */
     public function getDependencies(): array
     {
-        return [GradeFixtures::class];
+        return [GradeFixtures::class, UserFixtures::class];
     }
 }

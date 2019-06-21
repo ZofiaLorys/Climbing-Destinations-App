@@ -3,7 +3,6 @@
  * Ranking type.
  */
 namespace App\Form;
-use App\Entity\Destination;
 use App\Entity\Ranking;
 use App\Entity\Grade;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;

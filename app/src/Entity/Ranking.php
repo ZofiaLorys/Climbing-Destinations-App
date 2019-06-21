@@ -28,17 +28,20 @@ class Ranking
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="rankings")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotNull
      */
     private $voter;
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Destination", inversedBy="rankings")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotNull
      *
      */
     private $destination;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Grade")
+     * @Assert\NotNull
      */
     private $grade;
 

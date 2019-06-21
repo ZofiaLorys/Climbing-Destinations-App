@@ -18,6 +18,10 @@ class ChangePasswordController extends AbstractController
 {
     /**
      * @Route("/changepassword", name="change_password")
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @param UserRepository $repository
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function ChangePassword(Request $request, UserPasswordEncoderInterface $passwordEncoder, UserRepository $repository)
     {
@@ -35,7 +39,15 @@ class ChangePasswordController extends AbstractController
                     $changePassword->getNewPassword()
                 )
             );
-            $repository->save($user);
+
+
+            try{
+                $repository->save($user);
+            }
+            catch(\Exception $e){
+                error_log($e->getMessage());
+            }
+
             $this->addFlash('success', 'message.updated_successfully');
             return $this->redirectToRoute('destination_index');
         }

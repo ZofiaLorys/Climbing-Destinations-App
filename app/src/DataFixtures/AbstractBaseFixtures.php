@@ -46,6 +46,7 @@ abstract class AbstractBaseFixtures extends Fixture
      * @param \Doctrine\Common\Persistence\ObjectManager $manager
      */
     abstract protected function loadData(ObjectManager $manager): void;
+
     /**
      * Create many objects at once:.
      *
@@ -56,11 +57,11 @@ abstract class AbstractBaseFixtures extends Fixture
      *           return $user;
      *      });
      *
-     * @param int      $count     Number of object to create
-     * @param string   $groupName Tag these created objects with this group name,
+     * @param int $count Number of object to create
+     * @param string $groupName Tag these created objects with this group name,
      *                            and use this later with getRandomReference(s)
      *                            to fetch only from this specific group
-     * @param callable $factory   Defines method of creating objects
+     * @param callable $factory Defines method of creating objects
      */
     protected function createMany(int $count, string $groupName, callable $factory): void
     {

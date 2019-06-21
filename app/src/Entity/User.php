@@ -8,10 +8,8 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\Validator\Constraints as SecurityAssert;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -178,7 +176,7 @@ class User implements UserInterface
 
 
 /**
-* @return Collection|Rankings[]
+* @return Collection|Ranking[]
 */
     public function getRankings(): Collection
     {
@@ -258,7 +256,6 @@ class User implements UserInterface
     public function eraseCredentials()
     {
         // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
     }
 
     /**
@@ -313,15 +310,7 @@ class User implements UserInterface
     }
 
 
-    public function getPlainPassword()
-    {
-        return $this->plainPassword;
-    }
 
-    public function setPlainPassword($password)
-    {
-        $this->plainPassword = $password;
-    }
 
 
 

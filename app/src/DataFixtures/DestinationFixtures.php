@@ -6,6 +6,8 @@
 namespace App\DataFixtures;
 
 use App\Entity\Destination;
+
+
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -18,18 +20,16 @@ class DestinationFixtures extends AbstractBaseFixtures implements DependentFixtu
      * Load.
      *
      * @param \Doctrine\Common\Persistence\ObjectManager $manager
+     * @return destination
      */
     public function loadData(ObjectManager $manager): void
     {
-        $this->createMany(50, 'destinations', function ($i) {
+        $this->createMany(50, 'destinations', function () {
             $destination = new Destination();
             $destination->setTitle($this->faker->word);
             $destination->setDescription($this->faker->paragraph);
             $destination->setCountry($this->getRandomReference('countries'));
             $destination->setAuthor($this->getRandomReference('users'));
-            $destination->addRanking($this->getRandomReference('ranking'));
-
-
 
             return $destination;
         });

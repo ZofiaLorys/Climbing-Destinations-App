@@ -7,7 +7,6 @@ namespace App\Controller;
 
 use App\Entity\Destination;
 use App\Form\DestinationType;
-use App\Form\DestinationTypeNew;
 use App\Repository\DestinationRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

@@ -3,9 +3,7 @@
  * Ranking controller.
  */
 namespace App\Controller;
-use App\Entity\Destination;
 use App\Entity\Ranking;
-use App\Entity\Country;
 use App\Form\RankingType;
 use App\Repository\RankingRepository;
 use App\Repository\DestinationRepository;
@@ -68,17 +66,18 @@ class RankingController extends AbstractController
             ['ranking' => $ranking]
         );
     }
+
     /**
      * New action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request    HTTP request
-     * @param \App\Repository\RankingRepository            $repository Ranking repository
-     *
+     * @param \Symfony\Component\HttpFoundation\Request $request HTTP request
+     * @param $destination_id
+     * @param DestinationRepository $repositoryDestination
+     * @param RankingRepository $repositoryRanking
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
-     *
      * @Route(
      *     "/{destination_id}/new",
      *     methods={"GET", "POST"},
