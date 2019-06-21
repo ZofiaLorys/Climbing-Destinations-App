@@ -47,8 +47,6 @@
                 <target>Imię i Nazwisko</target>
             </trans-unit>
 
-
-
             <trans-unit id="action.view">
                 <source>action.view</source>
                 <target>Zobacz więcej</target>
@@ -124,7 +122,6 @@
                 <target>Nowa miejscówka</target>
             </trans-unit>
 
-
             <trans-unit id="title.destination_list">
             <source>title.destination_list</source>
             <target>Lista miejscówek</target>
@@ -135,7 +132,7 @@
             </trans-unit>
             <trans-unit id="title.destination_view">
                 <source>title.destination_view</source>
-                <target>Miejscówka nr #%id%</target>
+                <target>Miejscówka: %title%</target>
             </trans-unit>
             <trans-unit id="title.country_delete">
                 <source>title.country_delete</source>
@@ -186,11 +183,10 @@
                 <source>title.ranking_list</source>
                 <target>Lista rankingowa</target>
             </trans-unit>
-
-
-
-
-
+            <trans-unit id="title.ranking_delete">
+                <source>title.ranking_delete</source>
+                <target>Usuń ranking</target>
+            </trans-unit>
 
             <trans-unit id="message.form_error">
                 <source>message.form_error</source>

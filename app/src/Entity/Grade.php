@@ -30,12 +30,6 @@ class Grade
      */
     private $value;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Ranking", inversedBy="grade", cascade={"persist", "remove"})
-     * ORM\JoinColumn(nullable=false)
-     */
-  #  private $ranking;
-
 
     public function getId(): ?int
     {
@@ -51,18 +45,6 @@ class Grade
         return $this;
     }
 
-  #   public function getRanking(): ?Ranking
-  #   {
-  #       return $this->ranking;
-  #   }
 
-
-  #  public function setRanking(Ranking $ranking): self
-  #  {
-   #     $this->ranking = $ranking;
-#
- #          return $this;
-  #    }
 }
 
-#SELECT AVG(value), rankings.destination_id, destinations.title  FROM rankings JOIN grades ON rankings.grade_id = grades.id  JOIN destinations ON destinations.id = rankings.destination_id JOIN grades ON rankings.grade_id = grades.id GROUP BY destination_id ;;

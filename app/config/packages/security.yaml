@@ -48,8 +48,8 @@ security:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/user, roles: ROLE_ADMIN }
-        - { path: ^/ranking, roles: ROLE_ADMIN }
         - { path: ^/destination, roles: ROLE_USER}
+        - { path: ^/ranking, roles: ROLE_USER}
         - { path: ^/changepassword, roles: ROLE_USER}
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY}
         - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY}

@@ -159,5 +159,19 @@ class Destination
         return $this->rankings;
     }
 
+    /**
+     * If destination already ranked by user,
+     * then 1 elem collection is return (given user ranking data)
+     * Empty collection returned when user did not vote.
+     * @param  User $user
+     * @return ArrayCollection
+     */
+    public function getRankedByUser(User $user)
+    {
+        return $this->getRankings()->filter(function(Ranking $ranking) use ($user) {
+            return $ranking->getVoter()->getId() == $user->getId();
+        });
+    }
+
 
 }

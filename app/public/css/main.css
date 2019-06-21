@@ -9,11 +9,13 @@ table thead a {
 
 .pagination .page-item .page-link{
     color: #16a2b8;
-
 }
 
 table a {
-
     color: #16a2b8;
+}
 
+.table-destinations {
+    border-radius: 5px;
+    overflow: hidden;
 }

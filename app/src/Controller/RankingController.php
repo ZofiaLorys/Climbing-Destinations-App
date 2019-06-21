@@ -13,6 +13,9 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
+
 /**
  * Class RankingController.
  *
@@ -26,7 +29,7 @@ class RankingController extends AbstractController
      * @param \Symfony\Component\HttpFoundation\Request $request    HTTP request
      * @param \App\Repository\RankingRepository $repository Repository
      * @param \Knp\Component\Pager\PaginatorInterface   $paginator  Paginator
-     *
+     * @IsGranted("ROLE_ADMIN")
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
      * @Route(
@@ -46,26 +49,7 @@ class RankingController extends AbstractController
             ['pagination' => $pagination]
         );
     }
-    /**
-     * View action.
-     *
-     * @param \App\Entity\Ranking $ranking Ranking entity
-     *
-     * @return \Symfony\Component\HttpFoundation\Response HTTP response
-     *
-     * @Route(
-     *     "/{id}",
-     *     name="ranking_view",
-     *     requirements={"id": "[1-9]\d*"},
-     * )
-     */
-    public function view(Ranking $ranking): Response
-    {
-        return $this->render(
-            'ranking/view.html.twig',
-            ['ranking' => $ranking]
-        );
-    }
+
 
     /**
      * New action.
@@ -113,10 +97,9 @@ class RankingController extends AbstractController
      * @param \App\Repository\RankingRepository            $repository Ranking repository
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
-     *
+     * @IsGranted("ROLE_ADMIN")
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
-     *
      * @Route(
      *     "/{id}/edit",
      *     methods={"GET", "PUT"},
@@ -126,6 +109,7 @@ class RankingController extends AbstractController
      */
     public function edit(Request $request, Ranking $ranking, RankingRepository $repository): Response
     {
+
         $form = $this->createForm(RankingType::class, $ranking, ['method' => 'PUT']);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -149,10 +133,9 @@ class RankingController extends AbstractController
      * @param \App\Repository\RankingRepository            $repository Ranking repository
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
-     *
+     * @IsGranted("ROLE_ADMIN")
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
-     *
      * @Route(
      *     "/{id}/delete",
      *     methods={"GET", "DELETE"},

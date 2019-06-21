@@ -124,7 +124,7 @@
             </trans-unit>
             <trans-unit id="title.destination_view">
                 <source>title.destination_view</source>
-                <target>Destination #%id%</target>
+                <target>Destination: %title%</target>
             </trans-unit>
             <trans-unit id="title.country_delete">
                 <source>title.country_delete</source>
@@ -185,6 +185,11 @@
                 <source>title.ranking_list</source>
                 <target>Ranking list</target>
             </trans-unit>
+            <trans-unit id="title.ranking_delete">
+                <source>title.ranking_delete</source>
+                <target>Delete ranking</target>
+            </trans-unit>
+
 
 
 

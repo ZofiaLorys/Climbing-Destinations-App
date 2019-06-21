@@ -5,19 +5,22 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title.destination_view'|trans({'%id%': destination.id|default('')}) }}</h1>
+    <h1 class="display-4 pt-3 pb-3">{{ 'title.destination_view'|trans({'%title%': destination.title|default('')}) }}</h1>
     {% if destination is defined and destination|length %}
-        <dl class="dl-horizontal">
-            <dt>{{ 'label.id'|trans }}</dt>
-            <dd>{{ destination.id }}</dd>
-            <dt>{{ 'label.destination'|trans }}</dt>
-            <dd>{{  destination.title }}</dd>
-            <dt>{{ 'label.description'|trans }}</dt>
-            <dd>{{ destination.description }}</dd>
-            <dt>{{ 'label.country'|trans }}</dt>
-            <dd>{{  destination.country.title }}</dd>
-
-        </dl>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <strong>{{ 'label.id'|trans }}</strong>: {{ destination.id }}
+            </li>
+            <li class="list-group-item">
+                <strong>{{ 'label.destination'|trans }}</strong>: {{ destination.title }}
+            </li>
+            <li class="list-group-item">
+                <strong>{{ 'label.description'|trans }}</strong>: {{ destination.description }}
+            </li>
+            <li class="list-group-item">
+                <strong>{{ 'label.country'|trans }}</strong>: {{ destination.country.title }}
+            </li>
+        </ul>
     {% else %}
         <p>
             {{ 'message.item_not_found'|trans }}
