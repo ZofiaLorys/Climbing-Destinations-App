@@ -6,7 +6,7 @@
 
 {% block body %}
 
-    <h1>
+    <h1 class="display-4 pt-3 pb-3">
         {{ 'title.login'|trans }}
     </h1>
 
@@ -33,7 +33,7 @@
 
         <div class="form-group row float-sm-right">
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-            <input type="submit" value="{{ 'action.login'|trans }}" class="btn btn-primary" />
+            <input type="submit" value="{{ 'action.login'|trans }}" class="btn btn-info" />
         </div>
     </form>
 

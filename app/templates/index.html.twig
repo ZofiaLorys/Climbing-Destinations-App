@@ -5,29 +5,35 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title.destination_list'|trans }}</h1>
+    <h1 class="display-4 pt-3 pb-3">{{ 'title.destination_list'|trans }}</h1>
     {% if pagination is defined and pagination|length %}
 
-        <div class="navigation text-center">
+        <div class="navigation text-center pagination">
             {{ knp_pagination_render(pagination) }}
         </div>
 
         <table class="table table-striped">
-            <thead>
+            <thead class="bg-info text-white">
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 't.id') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.country'|trans, 'c.title') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.destination'|trans, 't.title') }}</th>
-                <th>{{ 'label.description'|trans }}</th>
+                <th  class="text-center" scope="col">{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'destinationTable.id') }}</th>
+                <th  class="text-center" scope="col">{{ knp_pagination_sortable(pagination, 'label.country'|trans, 'countryTable.title') }}</th>
+                <th  class="text-center" scope="col">{{ knp_pagination_sortable(pagination, 'label.destination'|trans, 'destinationTable.title') }}</th>
+                <th  class="text-center" scope="col">{{ knp_pagination_sortable(pagination, 'label.average-ranking'|trans, 'average') }}</th>
+
             </tr>
             </thead>
             <tbody>
+
             {% for destination in pagination %}
                 <tr>
-                    <td>{{ destination.id }}</td>
-                    <td>{{ destination.country.title }}</td>
-                    <td>{{ destination.title }}</td>
-                    <td>{{ destination.description }}</td>
+
+
+                    <td  class="text-center">{{ destination.id }}</td>
+                    <td  class="text-center">{{ destination.country }}</td>
+                    <td  class="text-center">{{ destination.title }}</td>
+                    <td  class="text-center">{{ destination.average|number_format(2, '.', ',') }}</td>
+
+
 
                 </tr>
             {% endfor %}

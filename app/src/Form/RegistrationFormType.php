@@ -17,7 +17,7 @@ class RegistrationFormType extends AbstractType
             'fullName',
             TextType::class,
             [
-                'label' => 'imię',
+                'label' => 'label.fullname',
                 'required' => true,
                 'attr' => ['max_length' => 45]
             ]

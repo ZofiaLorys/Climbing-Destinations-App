@@ -110,6 +110,10 @@
                 <source>action.change_password</source>
                 <target>Change password</target>
             </trans-unit>
+            <trans-unit id="action.ranking">
+                <source>action.ranking</source>
+                <target>Ranking</target>
+            </trans-unit>
 
 
 
@@ -134,6 +138,11 @@
                 <source>title.destination_edit</source>
                 <target>Editing destination</target>
             </trans-unit>
+            <trans-unit id="title.destination_new">
+                <source>title.destination_new</source>
+                <target>New destination</target>
+            </trans-unit>
+
             <trans-unit id="title.country_edit">
                 <source>title.country_edit</source>
                 <target>Country editing</target>
@@ -164,7 +173,18 @@
                 <source>title.user_delete</source>
                 <target>Delete user</target>
             </trans-unit>
-
+            <trans-unit id="title.user_register">
+                <source>title.user_register</source>
+                <target>Register</target>
+            </trans-unit>
+            <trans-unit id="title.change_password">
+                <source>title.change_password</source>
+                <target>Change password</target>
+            </trans-unit>
+            <trans-unit id="title.ranking_list">
+                <source>title.ranking_list</source>
+                <target>Ranking list</target>
+            </trans-unit>
 
 
 

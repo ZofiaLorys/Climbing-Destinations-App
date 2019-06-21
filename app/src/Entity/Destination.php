@@ -154,5 +154,10 @@ class Destination
         return $this;
     }
 
+    public function getRankings()
+    {
+        return $this->rankings;
+    }
+
 
 }

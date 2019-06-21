@@ -110,9 +110,18 @@
                 <target>Zmień hasło</target>
             </trans-unit>
 
+            <trans-unit id="action.ranking">
+                <source>action.ranking</source>
+                <target>Ranking</target>
+            </trans-unit>
+
             <trans-unit id="title.user_edit">
                 <source>title.user_edit</source>
                 <target>Zmień uprawnienia</target>
+            </trans-unit>
+            <trans-unit id="title.destination_new">
+                <source>title.destination_new</source>
+                <target>Nowa miejscówka</target>
             </trans-unit>
 
 
@@ -165,6 +174,20 @@
                 <source>title.user_delete</source>
                 <target>Usuń użytkownika</target>
             </trans-unit>
+            <trans-unit id="title.user_register">
+                <source>title.user_register</source>
+                <target>Zarejestruj się</target>
+            </trans-unit>
+            <trans-unit id="title.change_password">
+                <source>title.change_password</source>
+                <target>Zmień hasło</target>
+            </trans-unit>
+            <trans-unit id="title.ranking_list">
+                <source>title.ranking_list</source>
+                <target>Lista rankingowa</target>
+            </trans-unit>
+
+
 
 
 

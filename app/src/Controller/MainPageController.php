@@ -40,7 +40,7 @@ class MainPageController extends AbstractController
         }
 
         $pagination = $paginator->paginate(
-            $repository->queryAll(),
+            $repository->queryAllWithAvgRanking(),
             $request->query->getInt('page', 1),
             Destination::NUMBER_OF_ITEMS
         );
