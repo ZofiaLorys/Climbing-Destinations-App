@@ -6,7 +6,7 @@
 
 {% block body %}
 
-    <h1>
+    <h1 class="display-4 pt-3 pb-3">
         {% if page_title_param is defined %}{{ page_title|trans(page_title_param) }}{% else %}{{ page_title|trans }}{% endif %}
     </h1>
 

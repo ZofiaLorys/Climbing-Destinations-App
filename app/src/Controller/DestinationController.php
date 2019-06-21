@@ -50,7 +50,7 @@ class DestinationController extends AbstractController
 
         return $this->render(
             'destination/index.html.twig',
-            ['pagination' => $pagination, dump($pagination)]
+            ['pagination' => $pagination]
         );
     }
 

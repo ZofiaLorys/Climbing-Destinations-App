@@ -106,6 +106,10 @@
                 <source>action.change_roles</source>
                 <target>Zmień rolę użytkownika</target>
             </trans-unit>
+            <trans-unit id="action.change_password">
+                <source>action.change_password</source>
+                <target>Change password</target>
+            </trans-unit>
 
 
 

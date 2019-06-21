@@ -5,25 +5,25 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title.destination_list'|trans }}</h1>
+    <h1 class="display-4 pt-3 pb-3">{{ 'title.destination_list'|trans }}</h1>
     {% if pagination is defined and pagination|length %}
 
-        <div class="navigation text-center">
+        <div class="navigation text-center pagination">
             {{ knp_pagination_render(pagination) }}
         </div>
 
         <table class="table table-striped">
-            <thead>
+            <thead class="bg-info text-white">
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'destinationTable.id') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.country'|trans, 'countryTable.title') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.destination'|trans, 'destinationTable.title') }}</th>
-                <th>{{ 'label.author'|trans }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.average-ranking'|trans, 'average') }}</th>
-                <th>{{ 'action.view'|trans }}</th>
-                <td>{{ 'label.new-grade'|trans }}</td>
-                <th>{{ 'action.edit'|trans }}</th>
-                <th>{{ 'action.delete'|trans }}</th>
+                <th  class="text-center" scope="col">{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'destinationTable.id') }}</th>
+                <th  class="text-center" scope="col">{{ knp_pagination_sortable(pagination, 'label.country'|trans, 'countryTable.title') }}</th>
+                <th  class="text-center" scope="col">{{ knp_pagination_sortable(pagination, 'label.destination'|trans, 'destinationTable.title') }}</th>
+                <th  class="text-center" scope="col">{{ knp_pagination_sortable(pagination, 'label.author'|trans, 'author')  }}</th>
+                <th  class="text-center" scope="col">{{ knp_pagination_sortable(pagination, 'label.average-ranking'|trans, 'average') }}</th>
+                <th  class="text-center" scope="col">{{ 'action.view'|trans }}</th>
+                <th  class="text-center"  scope="col">{{ 'label.new-grade'|trans }}</th>
+                <th  class="text-center" scope="col">{{ 'action.edit'|trans }}</th>
+                <th  class="text-center" scope="col">{{ 'action.delete'|trans }}</th>
             </tr>
             </thead>
             <tbody>
@@ -40,26 +40,26 @@
 
                    #}
 
-                    <td>{{ destination.id }}</td>
-                    <td>{{ destination.country }}</td>
-                    <td>{{ destination.title }}</td>
-                    <td>{{ destination.author }}</td>
-                    <td>{{ destination.average|default('passed var is empty') }}</td>
+                    <td  class="text-center">{{ destination.id }}</td>
+                    <td  class="text-center">{{ destination.country }}</td>
+                    <td  class="text-center">{{ destination.title }}</td>
+                    <td  class="text-center">{{ destination.author }}</td>
+                    <td  class="text-center">{{ destination.average|number_format(2, '.', ',') }}</td>
 
-                    <td>
+                    <td  class="text-center">
                         <a href="{{ url('destination_view', {id: destination.id}) }}" title="{{ 'action.view'|trans }}">
                             {{ 'action.view'|trans }}
                         </a>
                     </td>
-                    <td>
+                    <td  class="text-center">
 
-                            <a href="{{ url('ranking_new', {destination_id: destination.id}) }}" title="{{ 'action.ranking_new'|trans }}">
+                            <a  href="{{ url('ranking_new', {destination_id: destination.id}) }}" title="{{ 'action.ranking_new'|trans }}">
                                 {{ 'action.ranking_new'|trans }}
                             </a>
 
 
                     </td>
-                    <td>
+                    <td  class="text-center">
 
 
                         {% if (destination.email == app.user.email or is_granted('ROLE_ADMIN'))  %}
@@ -69,7 +69,7 @@
 
                         {% endif %}
                     </td>
-                    <td>
+                    <td  class="text-center">
                         {% if destination.email == app.user.email or is_granted('ROLE_ADMIN') %}
                             <a href="{{ url('destination_delete', {id: destination.id}) }}" title="{{ 'action.delete'|trans }}">
                                 {{ 'action.delete'|trans }}

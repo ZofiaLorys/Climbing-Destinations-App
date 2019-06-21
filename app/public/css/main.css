@@ -1,0 +1,19 @@
+table thead a {
+    color: #fff;
+}
+
+.page-item.active .page-link {
+    background-color: #16a2b8 !important;
+    border-color: #16a2b8 !important;
+}
+
+.pagination .page-item .page-link{
+    color: #16a2b8;
+
+}
+
+table a {
+
+    color: #16a2b8;
+
+}

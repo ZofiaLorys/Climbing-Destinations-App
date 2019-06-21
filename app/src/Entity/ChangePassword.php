@@ -12,7 +12,7 @@ class ChangePassword
 {
 /**
 * @SecurityAssert\UserPassword(
-*     message = "Wrong value for your current password"
+*     message = "Wpisz poprawnie swoje aktualne hasło"
 * )
 */
 protected $oldPassword;
@@ -20,7 +20,7 @@ protected $oldPassword;
 /**
 * @Assert\Length(
 *     min = 6,
-*     minMessage = "Password should be at least 6 chars long"
+*     minMessage = "Hasło powinno mieć przynajmniej 6 znaków"
 * )
 */
 protected $newPassword;

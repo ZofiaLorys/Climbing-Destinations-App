@@ -105,6 +105,11 @@
                 <source>action.users</source>
                 <target>Użytkownicy</target>
             </trans-unit>
+            <trans-unit id="action.change_password">
+                <source>action.change_password</source>
+                <target>Zmień hasło</target>
+            </trans-unit>
+
             <trans-unit id="title.user_edit">
                 <source>title.user_edit</source>
                 <target>Zmień uprawnienia</target>
