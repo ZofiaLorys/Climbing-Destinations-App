@@ -60,4 +60,3 @@ class SecurityController extends AbstractController
         throw new \Exception('Internal security module error');
     }
 }
-

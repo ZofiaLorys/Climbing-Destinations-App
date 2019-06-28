@@ -2,6 +2,7 @@
 /**
  * Country fixture.
  */
+
 namespace App\DataFixtures;
 
 use App\Entity\Country;
@@ -20,9 +21,9 @@ class CountryFixtures extends AbstractBaseFixtures
     public function loadData(ObjectManager $manager): void
     {
         $this->createMany(200, 'countries', function () {
-
             $country = new Country();
             $country->setTitle($this->faker->unique()->country);
+
             return $country;
         });
 

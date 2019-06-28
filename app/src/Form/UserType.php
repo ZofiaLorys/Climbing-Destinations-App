@@ -5,7 +5,6 @@
 
 namespace App\Form;
 
-use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -30,7 +29,6 @@ class UserType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-
         $builder->add(
             'roles',
             ChoiceType::class, [
@@ -66,7 +64,10 @@ class UserType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults(['data_class' => User::class]);
+        $resolver->setDefaults([
+            // I put register group as register group is changing User entity without checking the password with Security Assert
+            'validation_groups' => ['register'],
+        ]);
     }
 
     /**

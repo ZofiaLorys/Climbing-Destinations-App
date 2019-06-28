@@ -1,10 +1,18 @@
 <?php
+/**
+ * Ranking Repository
+ */
+
 namespace App\Repository;
+
 use App\Entity\Ranking;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Doctrine\ORM\QueryBuilder;
+
 /**
+ * Class RankingRepository
+ *
  * @method Ranking|null find($id, $lockMode = null, $lockVersion = null)
  * @method Ranking|null findOneBy(array $criteria, array $orderBy = null)
  * @method Ranking[]    findAll()
@@ -12,10 +20,16 @@ use Doctrine\ORM\QueryBuilder;
  */
 class RankingRepository extends ServiceEntityRepository
 {
+    /**
+     * RankingRepository constructor.
+     *
+     * @param RegistryInterface $registry
+     */
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Ranking::class);
     }
+
     /**
      * Query all records.
      *
@@ -26,6 +40,7 @@ class RankingRepository extends ServiceEntityRepository
         return $this->getOrCreateQueryBuilder()
             ->orderBy('t.id', 'DESC');
     }
+
     /**
      * Save record.
      *
@@ -39,6 +54,7 @@ class RankingRepository extends ServiceEntityRepository
         $this->_em->persist($ranking);
         $this->_em->flush($ranking);
     }
+
     /**
      * Delete record.
      *
@@ -52,6 +68,7 @@ class RankingRepository extends ServiceEntityRepository
         $this->_em->remove($ranking);
         $this->_em->flush($ranking);
     }
+
     /**
      * Get or create new query builder.
      *
@@ -63,6 +80,7 @@ class RankingRepository extends ServiceEntityRepository
     {
         return $queryBuilder ?: $this->createQueryBuilder('t');
     }
+
     // /**
     //  * @return Ranking[] Returns an array of Ranking objects
     //  */
@@ -90,5 +108,5 @@ class RankingRepository extends ServiceEntityRepository
         ;
     }
     */
-    # SELECT AVG(value), destination_id FROM rankings NATURAL JOIN grades GROUP BY destination_id ;
+    // SELECT AVG(value), destination_id FROM rankings NATURAL JOIN grades GROUP BY destination_id ;
 }

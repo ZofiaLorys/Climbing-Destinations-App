@@ -29,7 +29,7 @@ class UserController extends AbstractController
      * Index action.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request    HTTP request
-     * @param \App\Repository\UserRepository $repository Repository
+     * @param \App\Repository\UserRepository            $repository Repository
      * @param \Knp\Component\Pager\PaginatorInterface   $paginator  Paginator
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
@@ -52,8 +52,6 @@ class UserController extends AbstractController
             ['pagination' => $pagination]
         );
     }
-
-
 
     /**
      * View action.
@@ -136,7 +134,7 @@ class UserController extends AbstractController
     {
         $form = $this->createForm(UserType::class, $user, ['method' => 'PUT']);
         $form->handleRequest($request);
-        #dump($user);
+        //dump($user);
         if ($form->isSubmitted() && $form->isValid()) {
             $repository->save($user);
 

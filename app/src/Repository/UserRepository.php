@@ -1,10 +1,18 @@
 <?php
+/**
+ * User Repository
+ */
+
 namespace App\Repository;
+
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+
 /**
+ * Class UserRepository
+ *
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
  * @method User|null findOneBy(array $criteria, array $orderBy = null)
  * @method User[]    findAll()
@@ -12,13 +20,19 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class UserRepository extends ServiceEntityRepository
 {
+    /**
+     * UserRepository constructor.
+     *
+     * @param RegistryInterface $registry
+     */
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, User::class);
     }
+
     /**
-     *
      * @param $userId
+     *
      * @return User[]
      */
     public function findAuthorDataById(int $userId): array
@@ -27,8 +41,10 @@ class UserRepository extends ServiceEntityRepository
             ->select('u.id', 'u.email', 'u.fullName')
             ->andWhere('u.id = :userId')
             ->setParameter('userId', $userId);
+
         return $qb->getQuery()->getResult();
     }
+
     /**
      * Query all records.
      *
@@ -39,6 +55,7 @@ class UserRepository extends ServiceEntityRepository
         return $this->getOrCreateQueryBuilder()
             ->orderBy('u.fullName', 'DESC');
     }
+
     /**
      * Save record.
      *
@@ -52,6 +69,7 @@ class UserRepository extends ServiceEntityRepository
         $this->_em->persist($user);
         $this->_em->flush($user);
     }
+
     /**
      * Delete record.
      *
@@ -65,6 +83,7 @@ class UserRepository extends ServiceEntityRepository
         $this->_em->remove($user);
         $this->_em->flush($user);
     }
+
     /**
      * Get or create new query builder.
      *
@@ -76,6 +95,7 @@ class UserRepository extends ServiceEntityRepository
     {
         return $queryBuilder ?: $this->createQueryBuilder('u');
     }
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */

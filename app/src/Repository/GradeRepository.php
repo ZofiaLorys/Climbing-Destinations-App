@@ -1,4 +1,7 @@
 <?php
+/**
+ * Grade Repository
+ */
 
 namespace App\Repository;
 
@@ -7,8 +10,9 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Doctrine\ORM\QueryBuilder;
 
-
 /**
+ * class GradeRepository
+ *
  * @method Grade|null find($id, $lockMode = null, $lockVersion = null)
  * @method Grade|null findOneBy(array $criteria, array $orderBy = null)
  * @method Grade[]    findAll()
@@ -16,6 +20,11 @@ use Doctrine\ORM\QueryBuilder;
  */
 class GradeRepository extends ServiceEntityRepository
 {
+    /**
+     * GradeRepository constructor.
+     *
+     * @param RegistryInterface $registry
+     */
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Grade::class);

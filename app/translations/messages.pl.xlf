@@ -47,6 +47,11 @@
                 <target>Imię i Nazwisko</target>
             </trans-unit>
 
+            <trans-unit id="label.voter">
+                <source>label.voter</source>
+                <target>Głosujący</target>
+            </trans-unit>
+
             <trans-unit id="action.view">
                 <source>action.view</source>
                 <target>Zobacz więcej</target>
@@ -107,6 +112,10 @@
                 <source>action.change_password</source>
                 <target>Zmień hasło</target>
             </trans-unit>
+            <trans-unit id="action.change_roles">
+                <source>action.change_roles</source>
+                <target>Zmień rolę użytkownika</target>
+            </trans-unit>
 
             <trans-unit id="action.ranking">
                 <source>action.ranking</source>
@@ -123,9 +132,9 @@
             </trans-unit>
 
             <trans-unit id="title.destination_list">
-            <source>title.destination_list</source>
-            <target>Lista miejscówek</target>
-        </trans-unit>
+                <source>title.destination_list</source>
+                <target>Lista miejscówek</target>
+            </trans-unit>
             <trans-unit id="title.country_list">
                 <source>title.country_list</source>
                 <target>Lista krajów</target>
@@ -208,6 +217,10 @@
             <trans-unit id="message.empty_list">
                 <source>message.empty_list</source>
                 <target>Lista jest pusta</target>
+            </trans-unit>
+            <trans-unit id="message.item_not_found">
+                <source>message.item_not_found</source>
+                <target>Nie masz dostępu</target>
             </trans-unit>
         </body>
     </file>

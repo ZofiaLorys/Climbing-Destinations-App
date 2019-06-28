@@ -1,4 +1,7 @@
 <?php
+/**
+ * Country Repository
+ */
 
 namespace App\Repository;
 
@@ -8,7 +11,7 @@ use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * Class CountryRepository
+ * Class CountryRepository.
  *
  * @method Country|null find($id, $lockMode = null, $lockVersion = null)
  * @method Country|null findOneBy(array $criteria, array $orderBy = null)
@@ -17,7 +20,6 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class CountryRepository extends ServiceEntityRepository
 {
-
     /**
      * CountryRepository constructor.
      *
@@ -27,7 +29,6 @@ class CountryRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Country::class);
     }
-
 
     /**
      * Query all records.
@@ -79,10 +80,6 @@ class CountryRepository extends ServiceEntityRepository
     {
         return $queryBuilder ?: $this->createQueryBuilder('t');
     }
-
-
-
-
 
     // /**
     //  * @return Country[] Returns an array of Country objects

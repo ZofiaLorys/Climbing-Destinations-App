@@ -13,24 +13,28 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-
+/**
+ * Class ChangePasswordController.
+ */
 class ChangePasswordController extends AbstractController
 {
     /**
      * @Route("/changepassword", name="change_password")
-     * @param Request $request
+     *
+     * @param Request                      $request
      * @param UserPasswordEncoderInterface $passwordEncoder
-     * @param UserRepository $repository
+     * @param UserRepository               $repository
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function ChangePassword(Request $request, UserPasswordEncoderInterface $passwordEncoder, UserRepository $repository)
     {
         $changePassword = new ChangePassword();
-        $form = $this->createForm( ChangePasswordType::class, $changePassword);
+        $form = $this->createForm(ChangePasswordType::class, $changePassword);
         $form->handleRequest($request);
         $user = $this->getUser();
 
-        # dump($user);
+        // dump($user);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setPassword(
@@ -40,15 +44,14 @@ class ChangePasswordController extends AbstractController
                 )
             );
 
-
-            try{
+            try {
                 $repository->save($user);
-            }
-            catch(\Exception $e){
+            } catch (\Exception $e) {
                 error_log($e->getMessage());
             }
 
             $this->addFlash('success', 'message.updated_successfully');
+
             return $this->redirectToRoute('destination_index');
         }
 

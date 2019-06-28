@@ -2,13 +2,16 @@
 /**
  * Ranking type.
  */
+
 namespace App\Form;
+
 use App\Entity\Ranking;
 use App\Entity\Grade;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
 /**
  * Class RankingType.
  */
@@ -32,7 +35,7 @@ class RankingType extends AbstractType
             EntityType::class,
             [
                 'class' => Grade::class,
-                'choice_label' => function ($grade) {
+                'choice_label' => function (Grade $grade) {
                     return $grade->getValue();
                 },
                 'label' => 'label.grade',
@@ -54,6 +57,7 @@ class RankingType extends AbstractType
             ]
         ); */
     }
+
     /**
      * Configures the options for this type.
      *
@@ -63,6 +67,7 @@ class RankingType extends AbstractType
     {
         $resolver->setDefaults(['data_class' => Ranking::class]);
     }
+
     /**
      * Returns the prefix of the template block name for this type.
      *

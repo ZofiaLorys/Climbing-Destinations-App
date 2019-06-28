@@ -2,10 +2,13 @@
 /**
  * Base fixtures.
  */
+
 namespace App\DataFixtures;
+
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
+
 /**
  * Class AbstractBaseFixtures.
  */
@@ -29,6 +32,7 @@ abstract class AbstractBaseFixtures extends Fixture
      * @var array
      */
     private $referencesIndex = [];
+
     /**
      * Load.
      *
@@ -40,6 +44,7 @@ abstract class AbstractBaseFixtures extends Fixture
         $this->faker = Factory::create();
         $this->loadData($manager);
     }
+
     /**
      * Load data.
      *
@@ -57,11 +62,11 @@ abstract class AbstractBaseFixtures extends Fixture
      *           return $user;
      *      });
      *
-     * @param int $count Number of object to create
-     * @param string $groupName Tag these created objects with this group name,
+     * @param int      $count     Number of object to create
+     * @param string   $groupName Tag these created objects with this group name,
      *                            and use this later with getRandomReference(s)
      *                            to fetch only from this specific group
-     * @param callable $factory Defines method of creating objects
+     * @param callable $factory   Defines method of creating objects
      */
     protected function createMany(int $count, string $groupName, callable $factory): void
     {
@@ -75,6 +80,7 @@ abstract class AbstractBaseFixtures extends Fixture
             $this->addReference(sprintf('%s_%d', $groupName, $i), $entity);
         }
     }
+
     /**
      * Set random reference to the object.
      *
@@ -96,8 +102,10 @@ abstract class AbstractBaseFixtures extends Fixture
             throw new \InvalidArgumentException(sprintf('Did not find any references saved with the group name "%s"', $groupName));
         }
         $randomReferenceKey = $this->faker->randomElement($this->referencesIndex[$groupName]);
+
         return $this->getReference($randomReferenceKey);
     }
+
     /**
      * Get array of objects references based on count.
      *
@@ -112,6 +120,7 @@ abstract class AbstractBaseFixtures extends Fixture
         while (count($references) < $count) {
             $references[] = $this->getRandomReference($className);
         }
+
         return $references;
     }
 }

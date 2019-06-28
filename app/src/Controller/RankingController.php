@@ -2,7 +2,9 @@
 /**
  * Ranking controller.
  */
+
 namespace App\Controller;
+
 use App\Entity\Ranking;
 use App\Form\RankingType;
 use App\Repository\RankingRepository;
@@ -15,7 +17,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
-
 /**
  * Class RankingController.
  *
@@ -27,9 +28,10 @@ class RankingController extends AbstractController
      * Index action.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request    HTTP request
-     * @param \App\Repository\RankingRepository $repository Repository
+     * @param \App\Repository\RankingRepository         $repository Repository
      * @param \Knp\Component\Pager\PaginatorInterface   $paginator  Paginator
      * @IsGranted("ROLE_ADMIN")
+     *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
      * @Route(
@@ -44,12 +46,12 @@ class RankingController extends AbstractController
             $request->query->getInt('page', 1),
             Ranking::NUMBER_OF_ITEMS
         );
+
         return $this->render(
             'ranking/index.html.twig',
             ['pagination' => $pagination]
         );
     }
-
 
     /**
      * New action.
@@ -57,7 +59,8 @@ class RankingController extends AbstractController
      * @param \Symfony\Component\HttpFoundation\Request $request HTTP request
      * @param $destination_id
      * @param DestinationRepository $repositoryDestination
-     * @param RankingRepository $repositoryRanking
+     * @param RankingRepository     $repositoryRanking
+     *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
      * @throws \Doctrine\ORM\ORMException
@@ -68,36 +71,38 @@ class RankingController extends AbstractController
      *     name="ranking_new",
      * )
      */
-    public function new(Request $request, $destination_id, DestinationRepository $repositoryDestination,  RankingRepository $repositoryRanking): Response
+    public function new(Request $request, $destination_id, DestinationRepository $repositoryDestination, RankingRepository $repositoryRanking): Response
     {
         $ranking = new Ranking();
         $ranking->setVoter($this->getUser());
-        // utworzyc nowa destynacje i podac juz obiekt
         $DestinationById = $repositoryDestination->findOneById($destination_id);
         $ranking->setDestination($DestinationById);
 
         $form = $this->createForm(RankingType::class, $ranking);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-
             $repositoryRanking->save($ranking);
             $this->addFlash('success', 'message.created_successfully');
+
             return $this->redirectToRoute('destination_index');
         }
+
         return $this->render(
             'ranking/new.html.twig',
             ['form' => $form->createView(), 'destination' => $destination_id]
         );
     }
+
     /**
      * Edit action.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request    HTTP request
-     * @param \App\Entity\Ranking                          $ranking       Ranking entity
-     * @param \App\Repository\RankingRepository            $repository Ranking repository
+     * @param \App\Entity\Ranking                       $ranking    Ranking entity
+     * @param \App\Repository\RankingRepository         $repository Ranking repository
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      * @IsGranted("ROLE_ADMIN")
+     *
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      * @Route(
@@ -109,14 +114,15 @@ class RankingController extends AbstractController
      */
     public function edit(Request $request, Ranking $ranking, RankingRepository $repository): Response
     {
-
         $form = $this->createForm(RankingType::class, $ranking, ['method' => 'PUT']);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $repository->save($ranking);
             $this->addFlash('success', 'message.updated_successfully');
+
             return $this->redirectToRoute('ranking_index');
         }
+
         return $this->render(
             'ranking/edit.html.twig',
             [
@@ -125,15 +131,17 @@ class RankingController extends AbstractController
             ]
         );
     }
+
     /**
      * Delete action.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request    HTTP request
-     * @param \App\Entity\Ranking                          $ranking       Ranking entity
-     * @param \App\Repository\RankingRepository            $repository Ranking repository
+     * @param \App\Entity\Ranking                       $ranking    Ranking entity
+     * @param \App\Repository\RankingRepository         $repository Ranking repository
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      * @IsGranted("ROLE_ADMIN")
+     *
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      * @Route(
@@ -153,8 +161,10 @@ class RankingController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $repository->delete($ranking);
             $this->addFlash('success', 'message.deleted_successfully');
+
             return $this->redirectToRoute('ranking_index');
         }
+
         return $this->render(
             'ranking/delete.html.twig',
             [

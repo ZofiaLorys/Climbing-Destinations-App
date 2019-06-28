@@ -1,9 +1,17 @@
 <?php
+/**
+ * Ranking Entity.
+ */
+
 namespace App\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 /**
+ * Ranking class.
+ *
  * @ORM\Entity(repositoryClass="App\Repository\RankingRepository")
  *
  * @ORM\Table(name="rankings")
@@ -13,7 +21,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *     message="Już zagłosowałeś na tą miejscowkę",
  *     ignoreNull=false
  * )
- *
  */
 class Ranking
 {
@@ -24,8 +31,6 @@ class Ranking
      */
     private $id;
     /**
-     *
-     *
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="rankings")
      * @ORM\JoinColumn(nullable=false)
      * @Assert\NotNull
@@ -35,7 +40,6 @@ class Ranking
      * @ORM\ManyToOne(targetEntity="App\Entity\Destination", inversedBy="rankings")
      * @ORM\JoinColumn(nullable=false)
      * @Assert\NotNull
-     *
      */
     private $destination;
 
@@ -48,40 +52,91 @@ class Ranking
     /**
      * Use constants to define configuration options that rarely change instead
      * of specifying them in app/config/config.yml.
-     * See http://symfony.com/doc/current/best_practices/configuration.html#constants-vs-configuration-options
+     * See http://symfony.com/doc/current/best_practices/configuration.html#constants-vs-configuration-options.
      *
      * @constant int NUMBER_OF_ITEMS
      */
     const NUMBER_OF_ITEMS = 10;
+
+    /**
+     * Getter for Id.
+     *
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
+
+    /**
+     * Getter for Grade.
+     *
+     * @return Grade|null
+     */
     public function getGrade(): ?Grade
     {
         return $this->grade;
     }
+
+    /**
+     * Setter for Grade.
+     *
+     * @param Grade|null $grade
+     *
+     * @return Ranking
+     */
     public function setGrade(?Grade $grade): self
     {
         $this->grade = $grade;
+
         return $this;
     }
+
+    /**
+     * Getter for Voter.
+     *
+     * @return User|null
+     */
     public function getVoter(): ?User
     {
         return $this->voter;
     }
+
+    /**
+     * Setter for Voter.
+     *
+     * @param User|null $voter
+     *
+     * @return Ranking
+     */
     public function setVoter(?User $voter): self
     {
         $this->voter = $voter;
+
         return $this;
     }
+
+    /**
+     * Getter for Destination.
+     *
+     * @return Destination|null
+     */
     public function getDestination(): ?Destination
     {
         return $this->destination;
     }
+
+    /**
+     * Setter for Destination.
+     *
+     * @param Destination|null $destination
+     *
+     * @return Ranking
+     */
     public function setDestination(?Destination $destination): self
     {
         $this->destination = $destination;
+
         return $this;
     }
 }

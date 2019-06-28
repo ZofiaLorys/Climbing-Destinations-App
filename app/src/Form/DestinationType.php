@@ -57,18 +57,14 @@ class DestinationType extends AbstractType
             EntityType::class,
             [
                 'class' => Country::class,
-                'query_builder'=>function(CountryRepository $er){return $er ->queryAll();},
-                'choice_label' => function ($country) {
+                'query_builder' => function (CountryRepository $er) {return $er->queryAll(); },
+                'choice_label' => function (Country $country) {
                     return $country->getTitle();
                 },
                 'label' => 'label.country',
                 'required' => true,
             ]
         );
-
-
-
-
     }
 
     /**

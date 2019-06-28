@@ -1,4 +1,8 @@
 <?php
+/**
+ * Migration file Version20190620141429
+ */
+
 
 declare(strict_types=1);
 
@@ -12,15 +16,27 @@ use Doctrine\Migrations\AbstractMigration;
  */
 final class Version20190620141429 extends AbstractMigration
 {
-    public function getDescription() : string
+    /**
+     * Getter for Description
+     *
+     * @return string
+     */
+    public function getDescription(): string
     {
         return '';
     }
 
-    public function up(Schema $schema) : void
+    /**
+     * Method up
+     *
+     * @param Schema $schema
+     *
+     * @throws \Doctrine\DBAL\DBALException
+     */
+    public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
+        $this->abortIf('mysql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('CREATE TABLE rankings (id INT AUTO_INCREMENT NOT NULL, voter_id INT UNSIGNED NOT NULL, destination_id INT NOT NULL, grade_id INT DEFAULT NULL, INDEX IDX_9D5DA5E6EBB4B8AD (voter_id), INDEX IDX_9D5DA5E6816C6140 (destination_id), INDEX IDX_9D5DA5E6FE19A1A8 (grade_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
         $this->addSql('CREATE TABLE countries (id INT AUTO_INCREMENT NOT NULL, title VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_5D66EBAD2B36786B (title), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
@@ -35,10 +51,17 @@ final class Version20190620141429 extends AbstractMigration
         $this->addSql('ALTER TABLE destinations ADD CONSTRAINT FK_2D3343C3F675F31B FOREIGN KEY (author_id) REFERENCES users (id)');
     }
 
-    public function down(Schema $schema) : void
+    /**
+     * Method down
+     *
+     * @param Schema $schema
+     *
+     * @throws \Doctrine\DBAL\DBALException
+     */
+    public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
+        $this->abortIf('mysql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('ALTER TABLE grades DROP FOREIGN KEY FK_3AE3611020F64684');
         $this->addSql('ALTER TABLE destinations DROP FOREIGN KEY FK_2D3343C3F92F3E70');

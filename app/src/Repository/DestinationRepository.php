@@ -1,4 +1,7 @@
 <?php
+/**
+ * Destination Repository
+ */
 
 namespace App\Repository;
 
@@ -9,16 +12,16 @@ use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * Class DestinationRepository
+ * Class DestinationRepository.
  *
  * @method Destination|null find($id, $lockMode = null, $lockVersion = null)
  * @method Destination|null findOneBy(array $criteria, array $orderBy = null)
  * @method Destination[]    findAll()
  * @method Destination[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method findOneById($destination_id)
  */
 class DestinationRepository extends ServiceEntityRepository
 {
-
     /**
      * DestinationRepository constructor.
      *
@@ -29,7 +32,6 @@ class DestinationRepository extends ServiceEntityRepository
         parent::__construct($registry, Destination::class);
     }
 
-
     /**
      * Query all records.
      *
@@ -37,20 +39,17 @@ class DestinationRepository extends ServiceEntityRepository
      */
     public function queryAll(): QueryBuilder
     {
-
-            return $this->getOrCreateQueryBuilder()
+        return $this->getOrCreateQueryBuilder()
                 ->orderBy('destinationTable.id', 'ASC')
                 ->join('destinationTable.rankings', 'rankingTable')
                 ->join('destinationTable.country', 'countryTable')
                 ->join('destinationTable.author', 'userTable')
                 ->join('rankingTable.grade', 'gradeTable');
-
-
     }
-
 
     /**
      * @param User|null $user
+     *
      * @return QueryBuilder
      */
     public function queryByAuthor(User $user = null): QueryBuilder
@@ -65,21 +64,22 @@ class DestinationRepository extends ServiceEntityRepository
         return $queryBuilder;
     }
 
-
-
-#SELECT AVG(value), destination_id FROM rankings NATURAL JOIN grades WHERE destination_id = 705 GROUP BY destination_id ;
-
+    /**
+     * Query all with ranking.
+     *
+     * function created so I can send average values of ranking to templates
+     *
+     * @return QueryBuilder
+     */
     public function queryAllWithAvgRanking(): QueryBuilder
     {
         $queryBuilder = $this->queryAll();
         $queryBuilder
             ->select('AVG(gradeTable.value) as average, destinationTable.id,  countryTable.title AS country, destinationTable.title, destinationTable.description, userTable.email AS email, userTable.fullName AS author')
             ->groupBy('rankingTable.destination');
+
         return $queryBuilder;
     }
-
-
-
 
     /**
      * Save record.
@@ -157,8 +157,5 @@ class DestinationRepository extends ServiceEntityRepository
             ;
         $queryAvgScore = $queryScore->createQueryBuilder('g')
     */
-#SELECT AVG(value), destination_id FROM rankings NATURAL JOIN grades WHERE destination_id = 705 GROUP BY destination_id ;    public function averageGrade($value): ?Destination
-
+//SELECT AVG(value), destination_id FROM rankings NATURAL JOIN grades WHERE destination_id = 705 GROUP BY destination_id ;    public function averageGrade($value): ?Destination
 }
-
-

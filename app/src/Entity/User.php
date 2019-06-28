@@ -11,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\Validator\Constraints as SecurityAssert;
 
 /**
  * Class User.
@@ -60,20 +61,18 @@ class User implements UserInterface
      */
     private $id;
 
-
-
     /**
      * E-mail.
      *
-     * @var string $email
+     * @var string
      *
      * @ORM\Column(
      *     type="string",
      *     length=45,
      * )
      *
-     * @Assert\NotBlank(groups={"register"})
-     * @Assert\Email(groups={"register"})
+     * @Assert\NotBlank(groups={"Default", "register"})
+     * @Assert\Email(groups={"Default", "register"})
      */
     private $email;
 
@@ -82,20 +81,19 @@ class User implements UserInterface
      *
      * @ORM\Column(type="string", length=255)
      *
-     * @Assert\NotBlank(groups={"register"})
+     * @Assert\NotBlank(groups={"Default", "register"})
      * @Assert\Length(
      *     min="6",
      *     max="255",
-     *     groups={"register"}
+     *     groups={"Default", "register"}
      * )
      *
-     * SecurityAssert\UserPassword
+     * @SecurityAssert\UserPassword(groups={"Default"})
      */
     private $password;
 
-
-# musimy stworzyć grupy walidacji tak żeby SecurityAssert\UserPassword działał ale był wyłączony tylko dla rejestracji
-#dla logowania ma działać, dla edytowania sama nie wiem :D
+    // musimy stworzyć grupy walidacji tak żeby SecurityAssert\UserPassword działał ale był wyłączony tylko dla rejestracji
+    //dla logowania ma działać, dla edytowania sama nie wiem :D
 
     /**
      * Roles.
@@ -109,11 +107,11 @@ class User implements UserInterface
      *
      * @ORM\Column(type="string", length=45)
      *
-     * @Assert\NotBlank(groups={"register"})
+     * @Assert\NotBlank(groups={"Default", "register"})
      * @Assert\Length(
      *     min="3",
      *     max="45",
-     *     groups={"register"}
+     *     groups={"Default", "register"}
      * )
      */
     private $fullName;
@@ -128,9 +126,6 @@ class User implements UserInterface
   #   */
     private $rankings;
 
-
-
-
     /**
      * Getter for the Id.
      *
@@ -140,7 +135,6 @@ class User implements UserInterface
     {
         return $this->id;
     }
-
 
     /**
      * Getter for the E-mail.
@@ -174,10 +168,9 @@ class User implements UserInterface
         return (string) $this->email;
     }
 
-
-/**
-* @return Collection|Ranking[]
-*/
+    /**
+     * @return Collection|Ranking[]
+     */
     public function getRankings(): Collection
     {
         return $this->rankings;
@@ -192,7 +185,7 @@ class User implements UserInterface
     /**
      * Use constants to define configuration options that rarely change instead
      * of specifying them in app/config/config.yml.
-     * See http://symfony.com/doc/current/best_practices/configuration.html#constants-vs-configuration-options
+     * See http://symfony.com/doc/current/best_practices/configuration.html#constants-vs-configuration-options.
      *
      * @constant int NUMBER_OF_ITEMS
      */
@@ -223,7 +216,7 @@ class User implements UserInterface
      *
      * @return array Roles
      */
-    public function getRoles() : array
+    public function getRoles(): array
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
@@ -286,6 +279,13 @@ class User implements UserInterface
         return $this->destinations;
     }
 
+    /**
+     * Add Destinations method.
+     *
+     * @param Destination $destination
+     *
+     * @return User
+     */
     public function addDestination(Destination $destination): self
     {
         if (!$this->destinations->contains($destination)) {
@@ -296,6 +296,13 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * Remove Destination methos.
+     *
+     * @param Destination $destination
+     *
+     * @return User
+     */
     public function removeDestination(Destination $destination): self
     {
         if ($this->destinations->contains($destination)) {
@@ -308,11 +315,4 @@ class User implements UserInterface
 
         return $this;
     }
-
-
-
-
-
-
-
 }

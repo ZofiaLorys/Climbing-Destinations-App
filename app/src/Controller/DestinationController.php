@@ -15,12 +15,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-
 /**
  * Class DestinationController.
  *
  * @Route("/destination"),
- *
  */
 class DestinationController extends AbstractController
 {
@@ -28,7 +26,7 @@ class DestinationController extends AbstractController
      * Index action.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request    HTTP request
-     * @param \App\Repository\DestinationRepository $repository Repository
+     * @param \App\Repository\DestinationRepository     $repository Repository
      * @param \Knp\Component\Pager\PaginatorInterface   $paginator  Paginator
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
@@ -42,11 +40,10 @@ class DestinationController extends AbstractController
     {
         $pagination = $paginator->paginate(
             $repository->queryAllWithAvgRanking(),
-            #$repository->queryAll(),
+            //$repository->queryAll(),
             $request->query->getInt('page', 1),
             Destination::NUMBER_OF_ITEMS
         );
-
 
         return $this->render(
             'destination/index.html.twig',
@@ -58,7 +55,7 @@ class DestinationController extends AbstractController
      * IndexByAuthor action.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request    HTTP request
-     * @param \App\Repository\DestinationRepository $repository Repository
+     * @param \App\Repository\DestinationRepository     $repository Repository
      * @param \Knp\Component\Pager\PaginatorInterface   $paginator  Paginator
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
@@ -81,8 +78,6 @@ class DestinationController extends AbstractController
             ['pagination' => $pagination]
         );
     }
-
-
 
     /**
      * View action.
@@ -109,7 +104,7 @@ class DestinationController extends AbstractController
      * New action.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request    HTTP request
-     * @param \App\Repository\DestinationRepository            $repository Destination repository
+     * @param \App\Repository\DestinationRepository     $repository Destination repository
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
@@ -132,10 +127,12 @@ class DestinationController extends AbstractController
             $repository->save($destination);
             $destination_id = $destination->getId();
             $this->addFlash('success', 'message.created_successfully');
-            return $this->redirectToRoute('ranking_new', array(
+
+            return $this->redirectToRoute('ranking_new', [
                 'destination_id' => $destination_id,
-            ));
+            ]);
         }
+
         return $this->render(
             'destination/new.html.twig',
             ['form' => $form->createView()]
@@ -145,9 +142,9 @@ class DestinationController extends AbstractController
     /**
      * Edit action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request    HTTP request
-     * @param \App\Entity\Destination                          $destination       Destination entity
-     * @param \App\Repository\DestinationRepository            $repository Destination repository
+     * @param \Symfony\Component\HttpFoundation\Request $request     HTTP request
+     * @param \App\Entity\Destination                   $destination Destination entity
+     * @param \App\Repository\DestinationRepository     $repository  Destination repository
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
@@ -164,10 +161,7 @@ class DestinationController extends AbstractController
      */
     public function edit(Request $request, Destination $destination, DestinationRepository $repository): Response
     {
-
-
         if (($destination->getAuthor() == $this->getUser()) || ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN'))) {
-
             $form = $this->createForm(DestinationType::class, $destination, ['method' => 'PUT']);
             $form->handleRequest($request);
 
@@ -186,21 +180,19 @@ class DestinationController extends AbstractController
                     'destination' => $destination,
                 ]
             );
-
         } else {
             $this->addFlash('warning', 'message.item_not_found');
+
             return $this->redirectToRoute('destination_index');
         }
-
-
     }
 
     /**
      * Delete action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request    HTTP request
-     * @param \App\Entity\Destination                          $destination       Destination entity
-     * @param \App\Repository\DestinationRepository            $repository Destination repository
+     * @param \Symfony\Component\HttpFoundation\Request $request     HTTP request
+     * @param \App\Entity\Destination                   $destination Destination entity
+     * @param \App\Repository\DestinationRepository     $repository  Destination repository
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
@@ -216,11 +208,7 @@ class DestinationController extends AbstractController
      */
     public function delete(Request $request, Destination $destination, DestinationRepository $repository): Response
     {
-
-
         if (($destination->getAuthor() == $this->getUser()) || ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN'))) {
-
-
             $form = $this->createForm(FormType::class, $destination, ['method' => 'DELETE']);
             $form->handleRequest($request);
 
@@ -242,9 +230,9 @@ class DestinationController extends AbstractController
                     'destination' => $destination,
                 ]
             );
-
         } else {
             $this->addFlash('warning', 'message.item_not_found');
+
             return $this->redirectToRoute('destination_index');
         }
     }

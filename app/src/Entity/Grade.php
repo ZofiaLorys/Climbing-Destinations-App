@@ -1,8 +1,16 @@
 <?php
+/**
+ * Entity Grade
+ */
+
 namespace App\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+
 /**
+ * Class Grade
+ *
  * @ORM\Entity(repositoryClass="App\Repository\GradeRepository")
  *
  * @ORM\Table(name="grades")
@@ -30,21 +38,37 @@ class Grade
      */
     private $value;
 
-
+    /**
+     * getter for Id.
+     *
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
+
+    /**
+     * getter for Value.
+     *
+     * @return int|null
+     */
     public function getValue(): ?int
     {
         return $this->value;
     }
+
+    /**
+     * Setter for value.
+     *
+     * @param int|null $value
+     *
+     * @return Grade
+     */
     public function setValue(?int $value): self
     {
         $this->value = $value;
+
         return $this;
     }
-
-
 }
-

@@ -1,4 +1,7 @@
 <?php
+/**
+ * Registration type
+ */
 
 namespace App\Form;
 
@@ -9,8 +12,18 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
+/**
+ * Class RegistrationFormType.
+ */
 class RegistrationFormType extends AbstractType
 {
+    /**
+     * BuildForm method.
+     *
+     * @param FormBuilderInterface $builder
+     * @param array                $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add(
@@ -19,7 +32,7 @@ class RegistrationFormType extends AbstractType
             [
                 'label' => 'label.fullname',
                 'required' => true,
-                'attr' => ['max_length' => 45]
+                'attr' => ['max_length' => 45],
             ]
         );
         $builder->add('email',
@@ -32,19 +45,23 @@ class RegistrationFormType extends AbstractType
         $builder->add('password', RepeatedType::class, [
             'type' => PasswordType::class,
             'required' => true,
-            'first_options'  => ['label' => 'Hasło'],
+            'first_options' => ['label' => 'Hasło'],
             'second_options' => ['label' => 'Powtórz hasło'],
         ]);
     }
 
+    /**
+     * ConfigureOptions methos.
+     *
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
-
-
         $resolver->setDefaults([
             'validation_groups' => ['register'],
         ]);
     }
+
     /**
      * Returns the prefix of the template block name for this type.
      *

@@ -10,10 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-
 use Symfony\Component\Validator\Constraints as Assert;
-
-
 
 /**
  * Class Country.
@@ -36,7 +33,6 @@ class Country
      */
     private $id;
 
-
     /**
      * Title.
      *
@@ -57,8 +53,6 @@ class Country
      */
     private $title;
 
-
-
     /**
      * Destinations.
      *
@@ -72,24 +66,19 @@ class Country
      */
     private $destinations;
 
-
-
-
     public function __construct()
     {
         $this->destinations = new ArrayCollection();
     }
 
-
     /**
      * Use constants to define configuration options that rarely change instead
      * of specifying them in app/config/config.yml.
-     * See http://symfony.com/doc/current/best_practices/configuration.html#constants-vs-configuration-options
+     * See http://symfony.com/doc/current/best_practices/configuration.html#constants-vs-configuration-options.
      *
      * @constant int NUMBER_OF_ITEMS
      */
     const NUMBER_OF_ITEMS = 10;
-
 
     /**
      * Getter for Id.
@@ -111,7 +100,6 @@ class Country
         return $this->title;
     }
 
-
     /**
      * Setter for Title.
      *
@@ -123,6 +111,8 @@ class Country
     }
 
     /**
+     * getter for Destinations.
+     *
      * @return Collection|Destination[]
      */
     public function getDestinations(): Collection
@@ -130,6 +120,13 @@ class Country
         return $this->destinations;
     }
 
+    /**
+     * Adding destion function.
+     *
+     * @param Destination $destination
+     *
+     * @return Country
+     */
     public function addDestination(Destination $destination): self
     {
         if (!$this->destinations->contains($destination)) {
@@ -140,6 +137,13 @@ class Country
         return $this;
     }
 
+    /**
+     * Removing destination function.
+     *
+     * @param Destination $destination
+     *
+     * @return Country
+     */
     public function removeDestination(Destination $destination): self
     {
         if ($this->destinations->contains($destination)) {
